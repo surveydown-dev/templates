@@ -14,9 +14,9 @@ options(dplyr.widtkh = Inf)
 db <- sd_database(
   host   = "aws-0-us-east-1.pooler.supabase.com",
   dbname = "postgres",
-  port   = "6543",
-  user   = "postgres.tnafzwpqajxvcjlqlhkl",
-  table  = "my_data"
+  port   = "5678",
+  user   = "postgres.axzkymswaxcasjdflkurrj",
+  table  = 'my_table'
 )
 
 df <- sd_get_data(db)

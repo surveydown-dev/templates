@@ -7,6 +7,23 @@ library(tidyverse)
 # Change dplyr settings so I can view all columns
 options(dplyr.widtkh = Inf)
 
+
+### Obtain data_raw from the supabase database
+### This is done just once, then stored locally
+#
+# db <- sd_database(
+#   host   = "aws-0-us-east-1.pooler.supabase.com",
+#   dbname = "postgres",
+#   port   = "6543",
+#   user   = "postgres.tnafzwpqajxvcjlqlhkl",
+#   table  = "pilot_survey",
+#   gssencmode = "disable"
+# )
+#
+# df <- sd_get_data(db)
+# write_csv(df, here::here('data', 'data_raw.csv'))
+
+
 # Import raw data
 data_raw <- read_csv(here("data", "data_raw.csv"))
 

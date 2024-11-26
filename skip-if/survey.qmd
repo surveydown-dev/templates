@@ -1,0 +1,101 @@
+---
+format: html
+echo: false
+warning: false
+---
+
+```{r}
+library(surveydown)
+```
+
+::: {#basic_skipping .sd-page}
+
+# Demo survey of the `skip_if` feature
+
+::: {.callout-note}
+
+This is a demo survey showcasing the functionality of <a href="https://surveydown.org" target="_blank">surveydown</a>. It doesn't collect any data.
+
+This demo utilizes cookies (stored in your browser). Use incognito mode for a fresh start.
+
+The GitHub repo of all demos can be accessed <a href="https://github.com/surveydown-dev/demos" target="_blank">here</a>.
+
+:::
+
+## Simple Skipping
+ 
+If the "**No**" option is chosen, you will be sent to the screenout page.
+
+This is done by using the `sd_skip_if()` function in the `server` of `app.R`.
+
+```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'vehicle_simple',
+  label = "Do you own your vehicle?",
+  option = c(
+    'Yes' = 'yes',
+    'No'  = 'no'
+  )
+)
+
+sd_next()
+```
+
+:::
+
+::: {#custom_skipping .sd-page}
+
+## Complex Skipping
+ 
+Say that we want to have a more complicated condition for screening out respondents. Now there are 2 questions. If the user chooses "**No**" for both questions, they'll be sent to the screenout page. This is also done by using the `sd_skip_if()` function in the `server` of `app.R`.
+
+```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'vehicle_complex',
+  label = "Do you own your vehicle?",
+  option = c(
+    'Yes' = 'yes',
+    'No'  = 'no'
+  )
+)
+
+sd_question(
+  type  = 'mc',
+  id    = 'buy_vehicle',
+  label = "Are you looking to buy a vehicle soon?",
+  option = c(
+    'Yes' = 'yes',
+    'No'  = 'no'
+  )
+)
+
+sd_next()
+```
+
+:::
+
+::: {#end .sd-page}
+
+## End page
+
+This is the normal end page for respondents who **do not** get screened out.
+
+```{r}
+sd_close()
+```
+
+:::
+
+::: {#screenout .sd-page}
+
+## Screenout page
+
+This is the **screenout page** for respondents who were sent to the screenout page.
+
+```{r}
+sd_close()
+```
+
+:::

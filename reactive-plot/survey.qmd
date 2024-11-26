@@ -1,0 +1,54 @@
+---
+format: html
+echo: false
+warning: false
+---
+
+```{r}
+library(surveydown)
+```
+
+::: {#welcome .sd-page}
+
+# Demo survey of reactive plot
+
+::: {.callout-note}
+
+This is a demo survey showcasing the functionality of <a href="https://surveydown.org" target="_blank">surveydown</a>. It doesn't collect any data.
+
+This demo utilizes cookies (stored in your browser). Use incognito mode for a fresh start.
+
+The GitHub repo of all demos can be accessed <a href="https://github.com/surveydown-dev/demos" target="_blank">here</a>.
+
+:::
+
+Here is a basic "multiple choice" question. The results will be displayed on the next page, showing both the choice you made as well as a summary of all the choices made by other participants.
+
+```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'penguins',
+  label = "Which type of penguin do you like the best?",
+  option = c(
+    'Adélie'    = 'adelie',
+    'Chinstrap' = 'chinstrap',
+    'Gentoo'    = 'gentoo'
+  )
+)
+
+sd_next()
+```
+
+:::
+
+::: {#results .sd-page}
+
+You chose: **`r sd_output("penguins", type = "value")`**
+
+Summary of what everyone else has chosen:
+
+```{r}
+shiny::plotOutput('penguin_plot')
+```
+
+:::

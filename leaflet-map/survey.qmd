@@ -1,0 +1,41 @@
+---
+echo: false
+warning: false
+---
+
+```{r}
+library(surveydown)
+library(leaflet)
+library(shiny)
+library(bslib)
+```
+
+::: {#welcome .sd-page}
+
+# Welcome to our survey!
+
+```{r}
+card(
+  card_header("Where do you live?"),
+  leafletOutput("map"),
+  textOutput("selected_state")
+)
+```
+
+```{r}
+sd_next()
+```
+
+:::
+
+::: {#end .sd-page}
+
+## End
+
+This it the last page in the survey.
+
+```{r}
+sd_close("Exit Survey")
+```
+
+:::

@@ -16,8 +16,6 @@ library(surveydown)
 
 This is a demo survey showcasing the functionality of <a href="https://surveydown.org" target="_blank">surveydown</a>. It doesn't collect any data.
 
-This demo utilizes cookies (stored in your browser). Use incognito mode for a fresh start.
-
 The GitHub repo of all demos can be accessed <a href="https://github.com/surveydown-dev/demos" target="_blank">here</a>.
 
 :::

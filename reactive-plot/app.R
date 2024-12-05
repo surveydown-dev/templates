@@ -38,7 +38,8 @@ server <- function(input, output, session) {
     # Database designation and other settings
     sd_server(
         db = db,
-        all_questions_required = TRUE
+        all_questions_required = TRUE,
+        use_cookies = FALSE
     )
 
 }

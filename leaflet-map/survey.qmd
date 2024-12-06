@@ -4,29 +4,73 @@ warning: false
 ---
 
 ```{r}
-library(surveydown)
-library(leaflet)
-library(shiny)
-library(bslib)
+devtools::load_all('../surveydown')
 ```
+
+::: {#page_id1 .sd-page}
+
+# Page Title
+
+Page contents...
+
+```{r}
+# Insert your question here...
+sd_question(
+  type   = "mc_buttons",
+  id     = "apple_mc_buttons",
+  label  = "Which apple do you prefer most?",
+  option = c(
+    "Fuji"       = "fuji",
+    "Gala"       = "gala",
+    "Honeycrisp" = "honeycrisp"
+  )
+)
+
+# Next button
+sd_next()
+```
+
+:::
+
 
 ::: {#welcome .sd-page}
 
-# Welcome to our survey!
+### Click on the state you live in:
 
 ```{r}
-card(
-  card_header("Where do you live?"),
-  leafletOutput("map"),
-  textOutput("selected_state")
-)
+#| out.width: "100%"
+
+sd_output("map_container")
 ```
+
+### You live in: `r sd_output("state", type = "value")`
 
 ```{r}
 sd_next()
 ```
 
 :::
+
+::: {#page_id .sd-page}
+
+# Page Title
+
+```{r}
+sd_question(
+  type   = "mc",
+  id     = "like_apple",
+  label  = "Do you like apple?",
+  option = c(
+    "Yes" = "yes",
+    "No"  = "no"
+  )
+)
+
+sd_next()
+```
+
+:::
+
 
 ::: {#end .sd-page}
 

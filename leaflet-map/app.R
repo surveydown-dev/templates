@@ -1,10 +1,14 @@
-library(surveydown)
+devtools::load_all('../surveydown')
 library(shiny)
 library(leaflet)
 library(bslib)
 
-# Server setup
 server <- function(input, output, session) {
+
+  # Create the map container
+  output$map_container <- renderUI({
+    leafletOutput("map", height = "400px")
+  })
 
   # Create the map
   output$map <- renderLeaflet({
@@ -28,30 +32,27 @@ server <- function(input, output, session) {
       )
   })
 
-  # Store the selected state
-  selected_state <- reactiveVal("Choose the state you live in")
+  # Store the selected state as a reactive value
+  selected_state <- reactiveVal("(choose a state)")
 
-  # Update text when a state is clicked
+  # Update and store state whenever a state is clicked
   observeEvent(input$map_shape_click, {
-    clicked_state <- input$map_shape_click$id
-    if (!is.null(clicked_state)) {
-      # Capitalize first letter of each word
-      state_name <- gsub("\\b(\\w)", "\\U\\1", clicked_state, perl = TRUE)
-      selected_state(paste("You live in", state_name))
+    state_name <- input$map_shape_click$id
+    if (!is.null(state_name)) {
+      state_name <- stringr::str_to_title(state_name)
+      state_name <- stringr::str_replace(state_name, ':main', '')
+
+      # Update the selected state reactive value
+      selected_state(state_name)
+
+      # Store the state value
+      sd_store_value(selected_state(), 'state')
     }
   })
 
-  # Display the text
-  output$selected_state <- renderText({
-    selected_state()
-  })
-
-  sd_store_value(selected_state())
-
   # Database designation and other settings
-  sd_server()
-
+  sd_server(use_cookies = FALSE)
 }
 
-# shinyApp() initiates your app - don't change it
-shiny::shinyApp(ui = sd_ui(), server = server)
+# shinyApp() initiates your app
+shinyApp(ui = sd_ui(), server = server)

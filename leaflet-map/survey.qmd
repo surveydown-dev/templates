@@ -41,10 +41,10 @@ sd_next()
 ```{r}
 #| out.width: "100%"
 
-sd_output("map_usa", type = "question")
+sd_output("map_of_usa", type = "question")
 ```
 
-### You live in: `r sd_output("map_usa", type = "value")`
+### You live in: `r sd_output("map_of_usa", type = "value")`
 
 ```{r}
 sd_next()

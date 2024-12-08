@@ -1,6 +1,4 @@
-# remotes::install_github("surveydown-dev/surveydown", ref = "resuming", force = TRUE)
-# library(surveydown)
-devtools::load_all("../../surveydown")
+library(surveydown)
 library(shiny)
 library(leaflet)
 library(bslib)

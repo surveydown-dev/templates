@@ -26,7 +26,8 @@ db <- sd_database(
 
 server <- function(input, output, session) {
 
-  # This is showcasing a map example
+  # LEAFLET MAP
+
   # Interactive question with custom type
   sd_question(
     type   = "custom",
@@ -40,11 +41,12 @@ server <- function(input, output, session) {
 
   # Create the map
   output$usa_map <- renderLeaflet({
+    states <- maps::map("state", plot = FALSE, fill = TRUE)
     leaflet() %>%
       addTiles() %>%
       setView(lng = -98.5795, lat = 39.8283, zoom = 4) %>%
       addPolygons(
-        data = maps::map("state", plot = FALSE, fill = TRUE),
+        data = states,
         fillColor = "lightblue",
         weight = 2,
         opacity = 1,
@@ -56,8 +58,8 @@ server <- function(input, output, session) {
           fillOpacity = 0.7,
           bringToFront = TRUE
         ),
-        group = "states",  # Add a group name
-        layerId = maps::map("state", plot = FALSE)$names
+        group = "states",
+        layerId = states$names
       )
   })
 
@@ -72,11 +74,12 @@ server <- function(input, output, session) {
       shiny::updateTextInput(session, "map_of_usa_interacted", value = TRUE)
 
       # Update map colors
+      states <- maps::map("state", plot = FALSE, fill = TRUE)
       leafletProxy("usa_map") %>%
         addPolygons(
-          data = maps::map("state", plot = FALSE, fill = TRUE),
+          data = states,
           fillColor = ifelse(
-            maps::map("state", plot = FALSE)$names == input$usa_map_shape_click$id,
+            states$names == input$usa_map_shape_click$id,
             "orange",
             "lightblue"
           ),
@@ -90,21 +93,22 @@ server <- function(input, output, session) {
             fillOpacity = 0.7,
             bringToFront = TRUE
           ),
-          layerId = maps::map("state", plot = FALSE)$names
+          layerId = states$names
         )
     }
   })
 
-  # For a generalized custom question type, use this basic structure:
-  # sd_question(
-  #   type = "custom",
-  #   id = "custom_input",
-  #   label = "Some custom input:",
-  #   option = tags$div(
-  #     class = "my-custom-input",
-  #     "Custom content here"
-  #   )
-  # )
+  # GENERALIZED CUSTOM QUESTION
+
+  sd_question(
+    type    = "custom",
+    id      = "custom_input",
+    label   = "Some custom input:",
+    option  = tags$div(
+      class = "my-custom-input",
+      "Custom content here"
+    )
+  )
 
   # Database designation and other settings
   sd_server(

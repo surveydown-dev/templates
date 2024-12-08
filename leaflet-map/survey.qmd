@@ -4,7 +4,8 @@ warning: false
 ---
 
 ```{r}
-devtools::load_all('../surveydown')
+# library(surveydown)
+devtools::load_all("../../surveydown")
 ```
 
 ::: {#page_id1 .sd-page}
@@ -35,15 +36,15 @@ sd_next()
 
 ::: {#welcome .sd-page}
 
-### Click on the state you live in:
+### A sample map question
 
 ```{r}
 #| out.width: "100%"
 
-sd_output("map_container")
+sd_output("map_usa", type = "question")
 ```
 
-### You live in: `r sd_output("state", type = "value")`
+### You live in: `r sd_output("map_usa", type = "value")`
 
 ```{r}
 sd_next()

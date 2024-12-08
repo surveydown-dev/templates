@@ -46,7 +46,6 @@ server <- function(input, output, session) {
     db = db,
     all_questions_required = TRUE
   )
-
 }
 
 # shinyApp() initiates your app - don't change it

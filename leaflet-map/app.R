@@ -1,4 +1,6 @@
 # remotes::install_github("surveydown-dev/surveydown", force = TRUE)
+# devtools::load_all("../../surveydown")
+
 library(surveydown)
 library(shiny)
 library(leaflet)
@@ -25,14 +27,12 @@ db <- sd_database(
 
 server <- function(input, output, session) {
 
-  # LEAFLET MAP
-
-  # Interactive question with custom type
+  # Define the question
   sd_question(
-    type   = "custom",
+    type   = "leaflet",
     id     = "map_of_usa",
     label  = "Click on the state you live in:",
-    option = leafletOutput("usa_map", height = "400px")
+    map    = "usa_map"
   )
 
   # Reactive value storing state selection
@@ -62,57 +62,9 @@ server <- function(input, output, session) {
       )
   })
 
-  # Click observer
-  observeEvent(input$usa_map_shape_click, {
-    state_name <- input$usa_map_shape_click$id
-    if (!is.null(state_name)) {
-      state_name <- stringr::str_to_title(state_name)
-      state_name <- stringr::str_replace(state_name, ':main', '')
-      selected_state(state_name)
-      shiny::updateTextInput(session, "map_of_usa", value = state_name)
-      shiny::updateTextInput(session, "map_of_usa_interacted", value = TRUE)
-
-      # Update map colors
-      states <- maps::map("state", plot = FALSE, fill = TRUE)
-      leafletProxy("usa_map") %>%
-        addPolygons(
-          data = states,
-          fillColor = ifelse(
-            states$names == input$usa_map_shape_click$id,
-            "orange",
-            "lightblue"
-          ),
-          weight = 2,
-          opacity = 1,
-          color = "white",
-          fillOpacity = 0.7,
-          highlightOptions = highlightOptions(
-            weight = 3,
-            color = "#666",
-            fillOpacity = 0.7,
-            bringToFront = TRUE
-          ),
-          layerId = states$names
-        )
-    }
-  })
-
-  # GENERALIZED CUSTOM QUESTION
-
-  sd_question(
-    type    = "custom",
-    id      = "custom_input",
-    label   = "Some custom input:",
-    option  = tags$div(
-      class = "my-custom-input",
-      "Custom content here"
-    )
-  )
-
   # Database designation and other settings
   sd_server(
-    db = db,
-    use_cookies = FALSE
+    db = db
   )
 }
 

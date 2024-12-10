@@ -4,8 +4,8 @@ warning: false
 ---
 
 ```{r}
-# devtools::load_all("../../surveydown")
-library(surveydown)
+devtools::load_all("../../surveydown")
+# library(surveydown)
 
 ```
 
@@ -24,10 +24,10 @@ The GitHub repo of all demos can be accessed <a href="https://github.com/surveyd
 ```{r}
 #| out.width: "100%"
 
-sd_output("map_of_usa", type = "question")
+sd_output("where_do_you_live", type = "question")
 ```
 
-### You live in: `r sd_output("map_of_usa", type = "value")`
+### You live in: `r sd_output("where_do_you_live", type = "value")`
 
 ```{r}
 sd_next()

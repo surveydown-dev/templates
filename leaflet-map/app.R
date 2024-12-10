@@ -1,7 +1,6 @@
 # remotes::install_github("surveydown-dev/surveydown", force = TRUE)
-# devtools::load_all("../../surveydown")
-
-library(surveydown)
+devtools::load_all("../../surveydown")
+# library(surveydown)
 library(shiny)
 library(leaflet)
 library(bslib)
@@ -27,20 +26,21 @@ db <- sd_database(
 
 server <- function(input, output, session) {
 
-  # Define the question
-  sd_question(
-    type   = "leaflet",
-    id     = "map_of_usa",
-    label  = "Click on the state you live in:",
-    map    = "usa_map"
-  )
+  # Reactive value of states_data
+  states_data <- reactiveVal(maps::map("state", plot = FALSE, fill = TRUE))
 
-  # Reactive value storing state selection
-  selected_state <- reactiveVal("(choose a state)")
+  # Define question
+  sd_question(
+    type     = "leaflet",
+    id       = "where_do_you_live",
+    label    = "Click on the state you live in:",
+    map_name = "usa_map",
+    map_data = states_data
+  )
 
   # Create the map
   output$usa_map <- renderLeaflet({
-    states <- maps::map("state", plot = FALSE, fill = TRUE)
+    states <- states_data()
     leaflet() %>%
       addTiles() %>%
       setView(lng = -98.5795, lat = 39.8283, zoom = 4) %>%

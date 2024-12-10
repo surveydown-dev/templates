@@ -4,12 +4,10 @@ warning: false
 ---
 
 ```{r}
-devtools::load_all("../../surveydown")
-# library(surveydown)
-
+library(surveydown)
 ```
 
-::: {#map_of_usa .sd-page}
+::: {#map_question .sd-page}
 
 # Demo survey of leaflet map using `custom` question type
 
@@ -24,10 +22,10 @@ The GitHub repo of all demos can be accessed <a href="https://github.com/surveyd
 ```{r}
 #| out.width: "100%"
 
-sd_output("where_do_you_live", type = "question")
+sd_output("state_you_live", type = "question")
 ```
 
-### You live in: `r sd_output("where_do_you_live", type = "value")`
+### You live in: `r sd_output("state_you_live", type = "value")`
 
 ```{r}
 sd_next()

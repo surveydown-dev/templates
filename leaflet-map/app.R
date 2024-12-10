@@ -1,6 +1,5 @@
 # remotes::install_github("surveydown-dev/surveydown", force = TRUE)
-devtools::load_all("../../surveydown")
-# library(surveydown)
+library(surveydown)
 library(shiny)
 library(leaflet)
 library(bslib)
@@ -26,40 +25,35 @@ db <- sd_database(
 
 server <- function(input, output, session) {
 
-  # Reactive value of states_data
-  states_data <- reactiveVal(maps::map("state", plot = FALSE, fill = TRUE))
+  # Reactive value of states
+  states <- reactiveVal(maps::map("state", plot = FALSE, fill = TRUE))
 
   # Define question
   sd_question(
     type     = "leaflet",
-    id       = "where_do_you_live",
+    id       = "state_you_live",
     label    = "Click on the state you live in:",
-    map_name = "usa_map",
-    map_data = states_data
+    map_name = "usa",
+    map_data = states
   )
 
-  # Create the map
-  output$usa_map <- renderLeaflet({
-    states <- states_data()
-    leaflet() %>%
+  # Create map
+  output$usa <- renderLeaflet({
+
+    # Create the objects
+    map <- leaflet() %>%
       addTiles() %>%
-      setView(lng = -98.5795, lat = 39.8283, zoom = 4) %>%
-      addPolygons(
-        data = states,
-        fillColor = "lightblue",
-        weight = 2,
-        opacity = 1,
-        color = "white",
-        fillOpacity = 0.7,
-        highlightOptions = highlightOptions(
-          weight = 3,
-          color = "#666",
-          fillOpacity = 0.7,
-          bringToFront = TRUE
-        ),
-        group = "states",
-        layerId = states$names
-      )
+      setView(lng = -98.5795, lat = 39.8283, zoom = 4)
+    area <- states()
+    color <- rep("orange", length(area$names))
+
+    # Define and call map_layout()
+    map_layout <- session$userData$usa_layout
+    map_layout(
+      map   = map,
+      area  = area,
+      color = color
+    )
   })
 
   # Database designation and other settings

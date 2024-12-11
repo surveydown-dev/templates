@@ -1,0 +1,46 @@
+---
+echo: false
+warning: false
+---
+
+```{r}
+library(surveydown)
+```
+
+::: {#map_of_usa .sd-page}
+
+# Demo survey of plotly widget
+
+::: {.callout-note}
+
+This is a demo survey showcasing the functionality of <a href="https://surveydown.org" target="_blank">surveydown</a>. It doesn't collect any data.
+
+The GitHub repo of all demos can be accessed <a href="https://github.com/surveydown-dev/demos" target="_blank">here</a>.
+
+:::
+
+```{r}
+#| out.width: "100%"
+
+sd_output("point_selection", type = "question")
+```
+
+### You selected: `r sd_output("point_selection", type = "value")`
+
+```{r}
+sd_next()
+```
+
+:::
+
+::: {#end .sd-page}
+
+## End
+
+This it the last page in the survey.
+
+```{r}
+sd_close("Exit Survey")
+```
+
+:::

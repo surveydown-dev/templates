@@ -23,6 +23,18 @@ db <- sd_database(
 # Server setup
 server <- function(input, output, session) {
 
+  # The leaflet type can ONLY be defined here in app.R due to reactivity.
+  sd_question(
+    type     = "leaflet",
+    id       = "state_selection",
+    label    = "Click on the state you live in:",
+    map      = maps::map("state", plot = FALSE, fill = TRUE),
+    lng      = -98.5795,
+    lat      = 39.8283,
+    zoom     = 4,
+    color    = "cornflowerblue"
+  )
+
   # Define any conditional skip logic here (skip to page if a condition is true)
   sd_skip_if(
     input$skip_to_page == "end" ~ "end",

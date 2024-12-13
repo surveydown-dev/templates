@@ -1,6 +1,5 @@
 # remotes::install_github("surveydown-dev/surveydown", force = TRUE)
-# library(surveydown)
-devtools::load_all("../../surveydown")
+library(surveydown)
 library(sf)
 library(shiny)
 library(tigris)
@@ -25,70 +24,65 @@ db <- sd_database(
   ignore = TRUE
 )
 
-# Set the highlight options
-highlightOptions <- highlightOptions(
-  weight = 3,
-  color = "#666",
-  fillOpacity = 0.7,
-  bringToFront = TRUE
-)
-
 server <- function(input, output, session) {
-  # Get states data from tigris
+  # States data from tigris
   states <- tigris::states(cb = TRUE, resolution = "20m") %>%
     dplyr::filter(STUSPS %in% state.abb) %>%
     sf::st_transform(4326)
 
-  # Create leaflet map widget
+  # Helper function for map layout
+  map_layout <- function(map, states, selected_state = NULL) {
+    addPolygons(
+      map,
+      data = states,
+      fillColor = if (is.null(selected_state)) {
+        "lightblue"
+      } else {
+        ifelse(states$NAME == selected_state, "orange", "lightblue")
+      },
+      weight = 2,
+      opacity = 1,
+      color = "white",
+      fillOpacity = 0.7,
+      layerId = states$NAME,
+      highlight = highlightOptions(
+        weight = 3,
+        color = "#666",
+        fillOpacity = 0.7,
+        bringToFront = TRUE
+      ),
+      label = ~NAME,
+      labelOptions = labelOptions(
+        style = list(padding = "3px 8px",
+                     "background-color" = "rgba(255,255,255,0.8)"),
+        textsize = "15px"
+      )
+    )
+  }
+
+  # Leaflet map widget
   output$usa_map <- renderLeaflet({
     leaflet(options = leafletOptions(preferCanvas = TRUE)) %>%
       addTiles() %>%
       setView(lng = -98.5795, lat = 39.8283, zoom = 4) %>%
-      addPolygons(
-        data = states,
-        fillColor = "lightblue",
-        weight = 2,
-        opacity = 1,
-        color = "white",
-        fillOpacity = 0.7,
-        highlightOptions = highlightOptions,
-        layerId = states$NAME,
-        label = states$NAME,
-        labelOptions = labelOptions(sticky = FALSE)
-      )
+      map_layout(states)
   })
 
-  # Create a reactive value for storing the selected state
+  # Reactive value storing selected state
   selected_state <- reactiveVal(NULL)
 
-  # Observer that runs whenever you click on the map
+  # Click observer
   observeEvent(input$usa_map_shape_click, {
     click <- input$usa_map_shape_click
     if (!is.null(click)) {
-      # Get the state name from the click (no need for string manipulation)
       state_name <- click$id
-
-      # Update the reactive value with the chosen state name
       selected_state(state_name)
-
-      # Update map colors
       leafletProxy("usa_map") %>%
-        addPolygons(
-          data = states,
-          fillColor = ifelse(states$NAME == click$id,
-                             "orange", "lightblue"),
-          weight = 2,
-          opacity = 1,
-          color = "white",
-          fillOpacity = 0.7,
-          highlightOptions = highlightOptions,
-          layerId = states$NAME
-        )
+        map_layout(states, state_name)
     }
   })
 
-  # Create the custom question to display the leaflet widget and store the
-  # selected state name in the data
+  # Create question using sd_question_custom()
   sd_question_custom(
     id = "state_selection",
     label = "Click on the state you live in:",
@@ -96,7 +90,12 @@ server <- function(input, output, session) {
     value = selected_state
   )
 
-  sd_server(db = db, use_cookies = FALSE, all_questions_required = TRUE)
+  # Database designation and other settings
+  sd_server(
+    db = db,
+    use_cookies = FALSE,
+    all_questions_required = TRUE
+  )
 }
 
 # shinyApp() initiates your app - don't change it

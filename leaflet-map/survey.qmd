@@ -4,7 +4,8 @@ warning: false
 ---
 
 ```{r}
-devtools::load_all('../surveydown')
+# library(surveydown)
+devtools::load_all("../../surveydown")
 ```
 
 ::: {#map_of_usa .sd-page}

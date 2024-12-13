@@ -1,13 +1,24 @@
-# remotes::install_github("surveydown-dev/surveydown", force = TRUE)
+# Install required packages:
+# install.packages("pak")
+# pak::pak(c(
+#   'surveydown-dev/surveydown', # <- Development version from github
+#   'ggplot2',
+#   'dplyr'
+# ))
+
+# Load packages
 library(surveydown)
 library(dplyr)
 library(ggplot2)
 
 # Database setup
 
-# For this demo, you need to create a database at https://supabase.com/
-# and connect to it using the sd_database() function with details
-# from your supabase database. See the documentation for details:
+# surveydown stores data on any PostgreSQL database. We recommend
+# https://supabase.com/ for a free and easy to use service.
+# For this demo, you need to create a database and connect to it using
+# the sd_database() function. Without a connected database, this demo
+# won't function properly as the plot generated in the server uses data
+# from a connected database. See the documentation for details:
 # https://surveydown.org/store-data
 
 db <- sd_database(

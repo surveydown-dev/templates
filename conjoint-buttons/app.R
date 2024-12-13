@@ -1,11 +1,28 @@
-# remotes::install_github("surveydown-dev/surveydown", force = TRUE)
+# Install required packages:
+# install.packages("pak")
+# pak::pak(c(
+#   'surveydown-dev/surveydown', # <- Development version from github
+#   'here',
+#   'glue',
+#   'readr',
+#   'dplyr'
+# ))
+
+# Load packages
 library(surveydown)
 library(here)
 library(dplyr)
 library(glue)
+library(readr)
 
-# Database setup - see the documentation for details:
-# https://surveydown.org/store-data
+# Database setup
+
+# surveydown stores data on any PostgreSQL database. We recommend
+# https://supabase.com/ for a free and easy to use service.
+# For this demo, we set ignore = TRUE, which will ignore the settings
+# and won't attempt to connect to the database. This is helpful for local
+# testing if you don't want to record testing data in the database table.
+# See the documentation for details: https://surveydown.org/store-data
 
 db <- sd_database(
   host   = "",
@@ -25,15 +42,15 @@ server <- function(input, output, session) {
   sd_store_value(completion_code)
 
   # Read in the full survey design file
-  design <- readr::read_csv(here("data", "choice_questions.csv"))
+  design <- read_csv(here("data", "choice_questions.csv"))
 
   # Sample a random respondentID and store it in your data
   respondentID <- sample(design$respID, 1)
   sd_store_value(respondentID, "respID")
 
   # Filter for the rows for the chosen respondentID
-  df <- design %>%
-    filter(respID == respondentID) %>%
+  df <- design |>
+    filter(respID == respondentID) |>
     # Paste on the "images/" path (images are stored in the "images" folder)
     mutate(image = paste0("images/", image))
 

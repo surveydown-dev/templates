@@ -1,18 +1,24 @@
-# remotes::install_github("surveydown-dev/surveydown", force = TRUE)
+# Install required packages:
+# install.packages("pak")
+# pak::pak(c(
+#   'surveydown-dev/surveydown', # <- Development version from github
+#   'shiny',
+#   'plotly'
+# ))
+
+# Load packages
 library(surveydown)
 library(shiny)
-library(leaflet)
 library(plotly)
 
 # Database setup
 
-# surveydown stores data on a database that you define at https://supabase.com/
-# To connect to a database, update the sd_database() function with details
-# from your supabase database. For this demo, we set ignore = TRUE, which will
-# ignore the settings and won't attempt to connect to the database. This is
-# helpful for local testing if you don't want to record testing data in the
-# database table. See the documentation for details:
-# https://surveydown.org/store-data
+# surveydown stores data on any PostgreSQL database. We recommend
+# https://supabase.com/ for a free and easy to use service.
+# For this demo, we set ignore = TRUE, which will ignore the settings
+# and won't attempt to connect to the database. This is helpful for local
+# testing if you don't want to record testing data in the database table.
+# See the documentation for details: https://surveydown.org/store-data
 
 db <- sd_database(
   host   = "",
@@ -46,11 +52,13 @@ server <- function(input, output, session) {
     }
   })
 
-  # Create the widget question
+  # Create question to store the selected state in resulting survey data
   sd_question_custom(
     id = "point_selection",
     label = "Click on a point in the scatter plot:",
+    # The output is the output widget - here we use plotlyOutput()
     output = plotlyOutput("scatter_plot", height = "400px"),
+    # The value is the reactive value that will be stored in the data
     value = selected_point
   )
 

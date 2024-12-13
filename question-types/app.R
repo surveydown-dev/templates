@@ -1,15 +1,18 @@
-# remotes::install_github("surveydown-dev/surveydown", force = TRUE)
+# Install required packages:
+# install.packages("pak")
+# pak::pak('surveydown-dev/surveydown') # Development version from github
+
+# Load packages
 library(surveydown)
 
 # Database setup
 
-# surveydown stores data on a database that you define at https://supabase.com/
-# To connect to a database, update the sd_database() function with details
-# from your supabase database. For this demo, we set ignore = TRUE, which will
-# ignore the settings and won't attempt to connect to the database. This is
-# helpful for local testing if you don't want to record testing data in the
-# database table. See the documentation for details:
-# https://surveydown.org/store-data
+# surveydown stores data on any PostgreSQL database. We recommend
+# https://supabase.com/ for a free and easy to use service.
+# For this demo, we set ignore = TRUE, which will ignore the settings
+# and won't attempt to connect to the database. This is helpful for local
+# testing if you don't want to record testing data in the database table.
+# See the documentation for details: https://surveydown.org/store-data
 
 db <- sd_database(
   host   = "",
@@ -22,18 +25,6 @@ db <- sd_database(
 
 # Server setup
 server <- function(input, output, session) {
-
-  # The leaflet type can ONLY be defined here in app.R due to reactivity.
-  sd_question(
-    type     = "leaflet",
-    id       = "state_selection",
-    label    = "Click on the state you live in:",
-    map      = maps::map("state", plot = FALSE, fill = TRUE),
-    lng      = -98.5795,
-    lat      = 39.8283,
-    zoom     = 4,
-    color    = "cornflowerblue"
-  )
 
   # Define any conditional skip logic here (skip to page if a condition is true)
   sd_skip_if(

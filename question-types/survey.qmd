@@ -63,7 +63,6 @@ This page showcases the different types of question supported by `{surveydown}`.
     - `date`: Select a date from a calendar widget.
     - `daterange`: Select two dates from calendar widgets (e.g. begin and end dates).
     - `matrix`: Several questions with same list of options. Each question is in fact an `mc` question.
-    - `leaflet`: A map type of question using the `leaflet` package.
 
 #### Use `type = 'text'` to specify a text input type question:
 
@@ -262,24 +261,9 @@ sd_question(
 )
 ```
 
-#### Use `type = 'leaflet'` to specify a map type:
-
-::: {.callout-note}
-
-The `leaflet` type of question is always reactive, so it can only be defined in `app.R` and called in `survey.qmd` using the `sd_output()` function.
-
-:::
-
-```{r}
-sd_output("state_selection", type = "question")
-```
-
-You live in: **`r sd_output("state_selection", type = "value")`**
-
 ```{r}
 sd_next()
 ```
-
 
 :::
 

@@ -1,12 +1,30 @@
-# remotes::install_github("surveydown-dev/surveydown", force = TRUE)
+# Install required packages:
+# install.packages("pak")
+# pak::pak(c(
+#   'surveydown-dev/surveydown', # <- Development version from github
+#   'here',
+#   'glue',
+#   'readr',
+#   'dplyr',
+#   'kableExtra'
+# ))
+
+# Load packages
 library(surveydown)
 library(dplyr)
+library(readr)
 library(glue)
 library(here)
 library(kableExtra)
 
-# Database setup - see the documentation for details:
-# https://surveydown.org/store-data
+# Database setup
+
+# surveydown stores data on any PostgreSQL database. We recommend
+# https://supabase.com/ for a free and easy to use service.
+# For this demo, we set ignore = TRUE, which will ignore the settings
+# and won't attempt to connect to the database. This is helpful for local
+# testing if you don't want to record testing data in the database table.
+# See the documentation for details: https://surveydown.org/store-data
 
 db <- sd_database(
   host   = "",
@@ -26,7 +44,7 @@ server <- function(input, output, session) {
   sd_store_value(completion_code)
 
   # Read in the full survey design file
-  design <- readr::read_csv(here("data", "choice_questions.csv"))
+  design <- read_csv(here("data", "choice_questions.csv"))
 
   # Sample a random respondentID and store it in your data
   respondentID <- sample(design$respID, 1)

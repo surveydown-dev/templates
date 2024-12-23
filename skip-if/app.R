@@ -1,28 +1,27 @@
 # Install required packages:
-# install.packages("pak")
-# pak::pak('surveydown-dev/surveydown') # Development version from github
+# install.packages('surveydown')
 
 # Load packages
 library(surveydown)
 
-# Database setup
+# ---------------------------------------------------------------------
+# Database setup - details at https://surveydown.org/database-config.html
 
-# surveydown stores data on any PostgreSQL database. We recommend
+# surveydown stores data in a PostgreSQL database. We recommend
 # https://supabase.com/ for a free and easy to use service.
-# For this demo, we set ignore = TRUE, which will ignore the settings
-# and won't attempt to connect to the database. This is helpful for local
-# testing if you don't want to record testing data in the database table.
-# See the documentation for details: https://surveydown.org/store-data
+#
+# Open the 'config.R' file to set up your database connection settings
+# You only need to do this once.
+#
+# For testing, use ignore = TRUE to save data locally instead of to the database
+db <- sd_db_connect(ignore = TRUE)
 
-db <- sd_database(
-  host   = "",
-  dbname = "",
-  port   = "",
-  user   = "",
-  table  = "",
-  ignore = TRUE
-)
-
+# When ready to store data in the database, use:
+# db <- sd_db_connect()
+#
+# You can also connect to a different table in the database, e.g.:
+# db <- sd_db_connect(table = "responses_test")
+# ---------------------------------------------------------------------
 
 # Server setup
 server <- function(input, output, session) {
@@ -35,7 +34,7 @@ server <- function(input, output, session) {
 
   )
 
-  # Database designation and other settings
+  # Other settings
   sd_server(
     db = db,
     all_questions_required = TRUE

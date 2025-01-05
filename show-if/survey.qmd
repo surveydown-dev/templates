@@ -2,25 +2,38 @@
 format: html
 echo: false
 warning: false
+footer-left: "Made with [surveydown](https://surveydown.org)"
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
 ---
 
 ```{r}
 library(surveydown)
 ```
 
-::: {#basic_showif .sd-page}
+::: {#welcome .sd-page}
 
-# Demo survey of the `show_if` feature
+# Demo - Conditional Display
 
-::: {.callout-note}
+Hi! This is a showcase of the conditional display feature that surveydown supports.
 
-This is a demo survey showcasing the functionality of <a href="https://surveydown.org" target="_blank">surveydown</a>. It doesn't collect any data.
+It consists of:
 
-The GitHub repo of all demos can be accessed <a href="https://github.com/surveydown-dev/demos" target="_blank">here</a>.
+1. Simple conditional display
+2. Complex conditional display
+3. Conditional display based on a numeric value
+4. Conditional display based on multiple inputs
+
+Please proceed to the next page.
+
+```{r}
+sd_next()
+```
 
 :::
 
-## 1. Simple Conditional Display
+::: {#basic_showif .sd-page}
+
+## 1. Simple conditional display
 
 If the "**Other**" option is chosen, a question asking the other penguin type will appear.
 
@@ -52,7 +65,7 @@ sd_next()
 
 ::: {#custom_showif .sd-page}
 
-## 2. Complex Conditional Display
+## 2. Complex conditional display
 
 Say that we want to have a more complicated `show_if` condition. Now there are 2 questions. Only if the user chooses both "**Other**" and "**Show**" will the other penguin question appear. This is also done by using the `sd_show_if()` function in the `server` of `app.R`.
 

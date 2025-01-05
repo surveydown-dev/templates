@@ -2,6 +2,8 @@
 format: html
 echo: false
 warning: false
+footer-left: "Made with [surveydown](https://surveydown.org)"
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
 ---
 
 ```{r}
@@ -10,15 +12,7 @@ library(surveydown)
 
 ::: {#welcome .sd-page}
 
-# Demo survey of question types
-
-::: {.callout-note}
-
-This is a demo survey showcasing the functionality of <a href="https://surveydown.org" target="_blank">surveydown</a>. It doesn't collect any data.
-
-The GitHub repo of all demos can be accessed <a href="https://github.com/surveydown-dev/demos" target="_blank">here</a>.
-
-:::
+# Demo - Question Types
 
 Hi! This is a showcase of different question types and question formatting that surveydown supports.
 

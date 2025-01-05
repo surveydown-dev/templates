@@ -2,25 +2,36 @@
 format: html
 echo: false
 warning: false
+footer-left: "Made with [surveydown](https://surveydown.org)"
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
 ---
 
 ```{r}
 library(surveydown)
 ```
 
-::: {#basic_skipping .sd-page}
+::: {#welcome .sd-page}
 
-# Demo survey of the `skip_if` feature
+# Demo - Conditional Skip
 
-::: {.callout-note}
+Hi! This is a showcase of the conditional skipping feature that surveydown supports.
 
-This is a demo survey showcasing the functionality of <a href="https://surveydown.org" target="_blank">surveydown</a>. It doesn't collect any data.
+It consists of:
 
-The GitHub repo of all demos can be accessed <a href="https://github.com/surveydown-dev/demos" target="_blank">here</a>.
+1. Simple skipping
+2. Complex skipping
+
+Please proceed to the next page.
+
+```{r}
+sd_next()
+```
 
 :::
 
-## Simple Skipping
+::: {#basic_skipping .sd-page}
+
+## 1. Simple skipping
  
 If the "**No**" option is chosen, you will be sent to the screenout page.
 
@@ -44,7 +55,7 @@ sd_next()
 
 ::: {#custom_skipping .sd-page}
 
-## Complex Skipping
+## 2. Complex skipping
  
 Say that we want to have a more complicated condition for screening out respondents. Now there are 2 questions. If the user chooses "**No**" for both questions, they'll be sent to the screenout page. This is also done by using the `sd_skip_if()` function in the `server` of `app.R`.
 

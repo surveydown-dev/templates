@@ -18,7 +18,7 @@ library(surveydown)
 
 There are two versions of the conjoint survey: "button" and "table".
 
-This is the "button" version. In this version, the conjoint options are shown as buttons.
+This is the "**button**" version. In this version, the conjoint options are shown as buttons.
 
 :::
 

@@ -1,6 +1,9 @@
 ---
+format: html
 echo: false
 warning: false
+footer-left: "Made with [surveydown](https://surveydown.org)"
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
 ---
 
 ```{r}
@@ -9,13 +12,11 @@ library(surveydown)
 
 ::: {#map_of_usa .sd-page}
 
-# Demo survey of plotly widget
+# Demo - Plotly Widget
 
 ::: {.callout-note}
 
-This is a demo survey showcasing the functionality of <a href="https://surveydown.org" target="_blank">surveydown</a>. It doesn't collect any data.
-
-The GitHub repo of all demos can be accessed <a href="https://github.com/surveydown-dev/demos" target="_blank">here</a>.
+This question is made using `sd_question_custom()` in `app.R`, and accessed using `sd_output()` in `survey.qmd`.
 
 :::
 

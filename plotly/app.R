@@ -3,24 +3,9 @@ library(surveydown)
 library(shiny)
 library(plotly)
 
-# Database setup
-
-# surveydown stores data on a database that you define at https://supabase.com/
-# To connect to a database, update the sd_database() function with details
-# from your supabase database. For this demo, we set ignore = TRUE, which will
-# ignore the settings and won't attempt to connect to the database. This is
-# helpful for local testing if you don't want to record testing data in the
-# database table. See the documentation for details:
-# https://surveydown.org/store-data
-
-db <- sd_database(
-  host   = "",
-  dbname = "",
-  port   = "",
-  user   = "",
-  table  = "",
-  ignore = TRUE
-)
+# Database Setup
+# sd_db_config
+# db <- sd_db_connect()
 
 # Example with plotly
 server <- function(input, output, session) {
@@ -53,8 +38,11 @@ server <- function(input, output, session) {
     value = selected_point
   )
 
-  sd_server(db = db, use_cookies = FALSE)
+  # Server Settings
+  sd_server(
+    db = NULL
+  )
 }
 
-# shinyApp() initiates your app - don't change it
+# Launch Survey
 shiny::shinyApp(ui = sd_ui(), server = server)

@@ -11,25 +11,11 @@ library(surveydown)
 library(dplyr)
 library(ggplot2)
 
-# Database setup
+# Database Setup
+# sd_db_config
+# db <- sd_db_connect()
 
-# surveydown stores data on any PostgreSQL database. We recommend
-# https://supabase.com/ for a free and easy to use service.
-# For this demo, you need to create a database and connect to it using
-# the sd_database() function. Without a connected database, this demo
-# won't function properly as the plot generated in the server uses data
-# from a connected database. See the documentation for details:
-# https://surveydown.org/store-data
-
-db <- sd_database(
-    host   = "",
-    dbname = "",
-    port   = "",
-    user   = "",
-    table  = ""
-)
-
-# Server setup
+# Server Setup
 server <- function(input, output, session) {
 
     # Refresh data every 5 seconds
@@ -46,14 +32,13 @@ server <- function(input, output, session) {
             labs(x = "Count", y = "Penguin Type", title = "Penguin Count")
     })
 
-    # Database designation and other settings
+    # Server Settings
     sd_server(
-        db = db,
-        all_questions_required = TRUE,
-        use_cookies = FALSE
+        db = NULL,
+        all_questions_required = TRUE
     )
 
 }
 
-# shinyApp() initiates your app - don't change it
+# Launch Survey
 shiny::shinyApp(ui = sd_ui(), server = server)

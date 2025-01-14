@@ -17,24 +17,11 @@ library(glue)
 library(here)
 library(kableExtra)
 
-# Database setup
+# Database Setup
+# sd_db_config
+# db <- sd_db_connect()
 
-# surveydown stores data on any PostgreSQL database. We recommend
-# https://supabase.com/ for a free and easy to use service.
-# For this demo, we set ignore = TRUE, which will ignore the settings
-# and won't attempt to connect to the database. This is helpful for local
-# testing if you don't want to record testing data in the database table.
-# See the documentation for details: https://surveydown.org/store-data
-
-db <- sd_database(
-  host   = "",
-  dbname = "",
-  port   = "",
-  user   = "",
-  table  = "",
-  ignore = TRUE
-)
-
+# Server Setup
 server <- function(input, output, session) {
 
   # Make a 10-digit random number completion code
@@ -88,22 +75,23 @@ server <- function(input, output, session) {
   output$cbc5_table <- make_cbc_table(df |> filter(qID == 5))
   output$cbc6_table <- make_cbc_table(df |> filter(qID == 6))
 
-  # Define any conditional skip logic here (skip to page if a condition is true)
+  # Skip Logic
   sd_skip_if(
     input$screenout == "blue" ~ "end_screenout",
     input$consent_age == "no" ~ "end_consent",
     input$consent_understand == "no" ~ "end_consent"
   )
 
-  # Define any conditional display logic here (show a question if a condition is true)
+  # Conditional Display
   sd_show_if(
     input$like_fruit %in% c("yes", "kind_of") ~ "fav_fruit"
   )
 
-  # Database designation and other settings
+  # Server Settings
   sd_server(
-    db = db,
-    all_questions_required = FALSE
+    db = NULL,
+    auto_scroll = TRUE,
+    rate_survey = TRUE
   )
 
 }

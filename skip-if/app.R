@@ -5,29 +5,14 @@
 # Load packages
 library(surveydown)
 
-# Database setup
+# Database Setup
+# sd_db_config
+# db <- sd_db_connect()
 
-# surveydown stores data on any PostgreSQL database. We recommend
-# https://supabase.com/ for a free and easy to use service.
-# For this demo, we set ignore = TRUE, which will ignore the settings
-# and won't attempt to connect to the database. This is helpful for local
-# testing if you don't want to record testing data in the database table.
-# See the documentation for details: https://surveydown.org/store-data
-
-db <- sd_database(
-  host   = "",
-  dbname = "",
-  port   = "",
-  user   = "",
-  table  = "",
-  ignore = TRUE
-)
-
-
-# Server setup
+# Server Setup
 server <- function(input, output, session) {
 
-  # Define any conditional skip logic here (skip to page if a condition is true)
+  # Skip Logic
   sd_skip_if(
     input$vehicle_simple == "no" ~ "screenout",
     input$vehicle_complex == "no" &
@@ -35,7 +20,7 @@ server <- function(input, output, session) {
 
   )
 
-  # Database designation and other settings
+  # Server Settings
   sd_server(
     db = db,
     all_questions_required = TRUE
@@ -43,5 +28,5 @@ server <- function(input, output, session) {
 
 }
 
-# shinyApp() initiates your app - don't change it
+# Launch Survey
 shiny::shinyApp(ui = sd_ui(), server = server)

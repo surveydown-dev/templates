@@ -32,7 +32,7 @@ server <- function(input, output, session) {
 
   # Server Settings
   sd_server(
-    db = db,
+    db = NULL,
     all_questions_required = TRUE
   )
 }

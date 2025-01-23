@@ -12,16 +12,16 @@ library(surveydown)
 
 ::: {#welcome .sd-page}
 
-# Demo - Conditional Display
+# Demo - Conditional Show
 
-Hi! This is a showcase of the conditional display feature that surveydown supports.
+Hi! This is a showcase of the "conditional show" feature that surveydown supports.
 
 It consists of:
 
-1. Simple conditional display
-2. Complex conditional display
-3. Conditional display based on a numeric value
-4. Conditional display based on multiple inputs
+1. Simple conditional show
+2. Complex conditional show
+3. Conditional show based on a numeric value
+4. Conditional show based on multiple inputs
 
 Please proceed to the next page.
 
@@ -33,7 +33,7 @@ sd_next()
 
 ::: {#basic_showif .sd-page}
 
-## 1. Simple conditional display
+## 1. Simple conditional show
 
 If the "**Other**" option is chosen, a question asking the other penguin type will appear.
 
@@ -65,7 +65,7 @@ sd_next()
 
 ::: {#custom_showif .sd-page}
 
-## 2. Complex conditional display
+## 2. Complex conditional show
 
 Say that we want to have a more complicated `show_if` condition. Now there are 2 questions. Only if the user chooses both "**Other**" and "**Show**" will the other penguin question appear. This is also done by using the `sd_show_if()` function in the `server` of `app.R`.
 
@@ -105,7 +105,7 @@ sd_next()
 
 ::: {#numeric_show_if .sd-page}
 
-## 3. Conditional display based on a numeric value
+## 3. Conditional show based on a numeric value
 
 Sometimes you may want to show a question based on a user input value. In the question below, if you type in a value greater than **1**, you'll see the conditional question.
 
@@ -137,7 +137,7 @@ sd_next()
 
 ::: {#multi_show_if .sd-page}
 
-## 4. Conditional display based on multiple inputs
+## 4. Conditional show based on multiple inputs
 
 In other cases, you might show a question based on multiple user input values. The conditions are explained below:
 
@@ -179,7 +179,7 @@ sd_next()
 
 ::: {#end .sd-page}
 
-## This is the end of the demo survey showcasing the conditional display feature.
+## This is the end of the demo survey showcasing the conditional show feature.
 
 ```{r}
 sd_close()

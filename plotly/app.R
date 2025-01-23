@@ -4,8 +4,15 @@ library(shiny)
 library(plotly)
 
 # Database Setup
-# sd_db_config
-# db <- sd_db_connect()
+
+# Run sd_db_config() once to set up Supabase credentials.
+# sd_db_config()
+
+# Connect with Supabase and store instance into db
+# Turn ignore to FALSE to connect to your Supabase
+db <- sd_db_connect(
+  ignore = TRUE
+)
 
 # Example with plotly
 server <- function(input, output, session) {
@@ -40,7 +47,7 @@ server <- function(input, output, session) {
 
   # Server Settings
   sd_server(
-    db = NULL
+    db = db
   )
 }
 

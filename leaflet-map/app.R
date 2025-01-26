@@ -17,21 +17,14 @@ library(tigris)
 library(leaflet)
 library(dplyr)
 
-# Database setup
+# Database Setup
 
-# surveydown stores data on any PostgreSQL database. We recommend
-# https://supabase.com/ for a free and easy to use service.
-# For this demo, we set ignore = TRUE, which will ignore the settings
-# and won't attempt to connect to the database. This is helpful for local
-# testing if you don't want to record testing data in the database table.
-# See the documentation for details: https://surveydown.org/store-data
+# Run sd_db_config() once to set up Supabase credentials.
+# sd_db_config()
 
-db <- sd_database(
-  host   = "",
-  dbname = "",
-  port   = "",
-  user   = "",
-  table  = "",
+# Connect with Supabase and store instance into db
+# Turn ignore to FALSE to connect to your Supabase
+db <- sd_db_connect(
   ignore = TRUE
 )
 
@@ -41,6 +34,7 @@ states <- tigris::states(cb = TRUE, resolution = "20m") |>
   dplyr::filter(STUSPS %in% state.abb) |>
   sf::st_transform(4326)
 
+# Server Setup
 server <- function(input, output, session) {
 
   # Helper function for modifying the leaflet map layout
@@ -115,13 +109,11 @@ server <- function(input, output, session) {
     value = selected_state
   )
 
-  # Other surveydown settings
+  # Server Settings
   sd_server(
-    db = db,
-    use_cookies = FALSE,
-    all_questions_required = TRUE
+    db = db
   )
 }
 
-# shinyApp() initiates your app - don't change it
+# Launch Survey
 shiny::shinyApp(ui = sd_ui(), server = server)

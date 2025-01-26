@@ -195,11 +195,11 @@ sd_question(
   id    = 'climate_care',
   label = "To what extent do you believe human-caused climate change is real?",
   option = c(
-    "Don't Believe"    = "dont_believe",
-    "Somewhat Believe" = "somewhat",
-    "Neutral"          = "neutral",
-    "Believe"          = "believe",
-    "Strongly Believe" = "strongly_believe"
+    "Don't Believe",
+    "Somewhat Believe",
+    "Neutral",
+    "Believe",
+    "Strongly Believe"
   )
 )
 ```

@@ -1,3 +1,5 @@
+# Package setup ---------------------------------------------------------------
+
 # Install required packages:
 # install.packages("pak")
 # pak::pak('surveydown-dev/surveydown') # Development version from github
@@ -5,18 +7,33 @@
 # Load packages
 library(surveydown)
 
-# Database Setup
 
-# Run sd_db_config() once to set up Supabase credentials.
+# Database setup --------------------------------------------------------------
+#
+# Details at: https://surveydown.org/manuals/storing-data
+#
+# surveydown stores data on any PostgreSQL database. We recommend
+# https://supabase.com/ for a free and easy to use service.
+#
+# Once you have your database ready, run the following function to store your
+# database configuration parameters in a local .env file:
+#
 # sd_db_config()
+#
+# Once your parameters are stored, you are ready to connect to your database.
+# For this demo, we set ignore = TRUE in the following code, which will ignore
+# the connection settings and won't attempt to connect to the database. This is
+# helpful if you don't want to record testing data in the database table while
+# doing local testing. Once you're ready to collect survey responses, set
+# ignore = FALSE or just delete this argument.
 
-# Connect with Supabase and store instance into db
-# Turn ignore to FALSE to connect to your Supabase
 db <- sd_db_connect(
-  ignore = TRUE
+    ignore = TRUE
 )
 
-# Server Setup
+
+# Server setup ----------------------------------------------------------------
+
 server <- function(input, output, session) {
 
     # Reactive expression that generates a url for a normal ending
@@ -63,14 +80,14 @@ server <- function(input, output, session) {
         label = "Redirect with Screenout Status"
     )
 
-    # Skip Logic
+    # Define any conditional skip logic here (skip to page if a condition is true)
     sd_skip_if(
         input$screening_question == "normal_end_1" ~ "end_page_1",
         input$screening_question == "normal_end_2" ~ "end_page_2",
         input$screening_question == "screenout" ~ "screenout_page"
     )
 
-    # Server Settings
+    # Database designation and other settings
     sd_server(
         db = db,
         all_questions_required = TRUE
@@ -78,5 +95,5 @@ server <- function(input, output, session) {
 
 }
 
-# Launch Survey
+# shinyApp() initiates your app - don't change it
 shiny::shinyApp(ui = sd_ui(), server = server)

@@ -10,7 +10,7 @@ library(surveydown)
 
 ::: {#welcome .sd-page}
 
-# Demo survey of reactive plot
+# Demo - Reactive Plot
 
 ::: {.callout-note}
 

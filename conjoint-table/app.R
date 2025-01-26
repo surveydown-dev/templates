@@ -1,3 +1,5 @@
+# Package setup ---------------------------------------------------------------
+
 # Install required packages:
 # install.packages("pak")
 # pak::pak(c(
@@ -17,18 +19,33 @@ library(glue)
 library(here)
 library(kableExtra)
 
-# Database Setup
 
-# Run sd_db_config() once to set up Supabase credentials.
+# Database setup --------------------------------------------------------------
+#
+# Details at: https://surveydown.org/manuals/storing-data
+#
+# surveydown stores data on any PostgreSQL database. We recommend
+# https://supabase.com/ for a free and easy to use service.
+#
+# Once you have your database ready, run the following function to store your
+# database configuration parameters in a local .env file:
+#
 # sd_db_config()
+#
+# Once your parameters are stored, you are ready to connect to your database.
+# For this demo, we set ignore = TRUE in the following code, which will ignore
+# the connection settings and won't attempt to connect to the database. This is
+# helpful if you don't want to record testing data in the database table while
+# doing local testing. Once you're ready to collect survey responses, set
+# ignore = FALSE or just delete this argument.
 
-# Connect with Supabase and store instance into db
-# Turn ignore to FALSE to connect to your Supabase
 db <- sd_db_connect(
   ignore = TRUE
 )
 
-# Server Setup
+
+# Server setup ----------------------------------------------------------------
+
 server <- function(input, output, session) {
 
   # Make a 10-digit random number completion code
@@ -82,23 +99,22 @@ server <- function(input, output, session) {
   output$cbc5_table <- make_cbc_table(df |> filter(qID == 5))
   output$cbc6_table <- make_cbc_table(df |> filter(qID == 6))
 
-  # Skip Logic
+  # Define any conditional skip logic here (skip to page if a condition is true)
   sd_skip_if(
     input$screenout == "blue" ~ "end_screenout",
     input$consent_age == "no" ~ "end_consent",
     input$consent_understand == "no" ~ "end_consent"
   )
 
-  # Conditional Display
+  # Define any conditional display logic here (show a question if a condition is true)
   sd_show_if(
     input$like_fruit %in% c("yes", "kind_of") ~ "fav_fruit"
   )
 
-  # Server Settings
+  # Database designation and other settings
   sd_server(
     db = db,
-    auto_scroll = TRUE,
-    rate_survey = TRUE
+    all_questions_required = FALSE
   )
 
 }

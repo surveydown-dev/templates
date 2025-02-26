@@ -14,12 +14,6 @@ library(surveydown)
 
 # Demo - Leaflet Map
 
-::: {.callout-note}
-
-This question is made using `sd_question_custom()` in `app.R`, and accessed using `sd_output()` in `survey.qmd`.
-
-:::
-
 ```{r}
 #| out.width: "100%"
 

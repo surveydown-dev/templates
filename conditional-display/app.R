@@ -1,14 +1,14 @@
-# ---------------------------------------------------------------------
-# Package setup ----
-#
+# Package setup ---------------------------------------------------------------
+
 # Install required packages:
-# install.packages('surveydown')
-#
+# install.packages("pak")
+# pak::pak('surveydown-dev/surveydown') # Development version from github
+
 # Load packages
 library(surveydown)
 
-# ---------------------------------------------------------------------
-# Database setup ----
+
+# Database setup --------------------------------------------------------------
 #
 # Details at: https://surveydown.org/manuals/storing-data
 #
@@ -27,29 +27,36 @@ library(surveydown)
 # doing local testing. Once you're ready to collect survey responses, set
 # ignore = FALSE or just delete this argument.
 
-db <- sd_db_connect(
-  ignore = TRUE
-)
+db <- sd_db_connect(ignore = TRUE)
 
-# ---------------------------------------------------------------------
-# Server setup ----
+
+# Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
 
-  # Define any conditional skip logic here (skip to page if a condition is true)
-  sd_skip_if(
-    input$vehicle_simple == "no" ~ "screenout",
-    input$vehicle_complex == "no" &
-      input$buy_vehicle == "no" ~ "screenout"
+  # Define any conditional display logic here (show a question if a condition is true)
+  sd_show_if(
 
+    # Simple conditional display
+    input$penguins_simple == "other" ~ "penguins_simple_other",
+
+    # Complex conditional display
+    input$penguins_complex == "other" &
+      input$show_other == "show" ~ "penguins_complex_other",
+
+    # Conditional display based on a numeric value
+    as.numeric(input$car_number) > 1 ~ "ev_ownership",
+
+    # Conditional display based on multiple inputs
+    input$fav_fruits %in% c("apple", "banana") ~ "apple_or_banana",
+    length(input$fav_fruits) > 3 ~ "fruit_number"
   )
 
-  # Other settings
+  # Database designation and other settings
   sd_server(
     db = db,
     all_questions_required = TRUE
   )
-
 }
 
 # shinyApp() initiates your app - don't change it

@@ -12,7 +12,7 @@ library(surveydown)
 
 ::: {#map_of_usa .sd-page}
 
-# Demo - Plotly Widget
+# Demo - Custom Plotly Chart
 
 ```{r}
 #| out.width: "100%"

@@ -1,0 +1,43 @@
+---
+format: html
+echo: false
+warning: false
+footer-left: "Made with [surveydown](https://surveydown.org)"
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
+---
+
+```{r}
+library(surveydown)
+```
+
+::: {#page1 .sd-page}
+
+Tell us about your vehicle:
+
+```{r}
+years <- rev(seq(2010, 2025, 1))
+names(years) <- years
+
+sd_question(
+  type   = "select",
+  id     = "year",
+  label  = "Model year:",
+  option = years
+)
+
+sd_output('make', type = 'question')
+
+sd_output('model', type = 'question')
+
+sd_next()
+```
+
+:::
+
+::: {#end .sd-page}
+
+```{r}
+sd_close()
+```
+
+:::

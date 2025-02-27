@@ -47,7 +47,7 @@ db <- sd_db_connect(ignore = TRUE)
 # Load state data from tigris - we do this outside of the server
 # because we only need to do it once across all sessions
 states <- tigris::states(cb = TRUE, resolution = "20m") |>
-  dplyr::filter(STUSPS %in% state.abb) |>
+  dplyr::filter(STUSPS %in% c(state.abb, "DC")) |>
   sf::st_transform(4326)
 
 server <- function(input, output, session) {
@@ -90,9 +90,20 @@ server <- function(input, output, session) {
 
   # Create the main leaflet map widget
   output$usa_map <- renderLeaflet({
-    leaflet(options = leafletOptions(preferCanvas = TRUE)) |>
+    leaflet(options = leafletOptions(
+      preferCanvas = TRUE,
+      scrollWheelZoom = FALSE
+    )) |>
       addTiles() |>
       setView(lng = -98.5795, lat = 39.8283, zoom = 4) |>
+      addEasyButton(easyButton(
+        position = "bottomleft",
+        icon = "fa-undo",
+        title = "Reset View",
+        onClick = JS("function(btn, map){
+        map.setView([39.8283, -98.5795], 4);
+      }")
+      )) |>
       map_layout(states)
   })
 

@@ -12,6 +12,16 @@ library(surveydown)
 
 ::: {#page1 .sd-page}
 
+# Demo - drilldown
+
+::: {.callout-note}
+
+The name of `drilldown` mimics the package name `surveydown`. It means the latter question options are defined from the former selection. It's like "drilling" down from a higher level.
+
+This is a demo of car selection. The **Model** options will change based on the selection of **Make**. By doing this, you'll only see the Models belonging the correct Makes.
+
+:::
+
 Tell us about your vehicle:
 
 ```{r}
@@ -21,7 +31,7 @@ names(years) <- years
 sd_question(
   type   = "select",
   id     = "year",
-  label  = "Model year:",
+  label  = "Model Year:",
   option = years
 )
 

@@ -28,7 +28,6 @@ library(surveydown)
 
 db <- sd_db_connect()
 
-
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {

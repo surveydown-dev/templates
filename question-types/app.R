@@ -7,7 +7,6 @@
 # Load packages
 library(surveydown)
 
-
 # Database setup --------------------------------------------------------------
 #
 # Details at: https://surveydown.org/manuals/storing-data
@@ -27,7 +26,7 @@ library(surveydown)
 # doing local testing. Once you're ready to collect survey responses, set
 # ignore = FALSE or just delete this argument.
 
-db <- sd_db_connect(ignore = TRUE)
+db <- sd_db_connect()
 
 
 # Server setup ----------------------------------------------------------------
@@ -35,7 +34,7 @@ db <- sd_db_connect(ignore = TRUE)
 server <- function(input, output, session) {
 
   # Define any conditional skip logic here (skip to page if a condition is true)
-  sd_skip_if(
+  sd_skip_forward(
     input$skip_to_page == "end" ~ "end",
     input$skip_to_page == "question_formatting" ~ "question_formatting"
   )

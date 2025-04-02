@@ -7,7 +7,6 @@
 # Load packages
 library(surveydown)
 
-
 # Database setup --------------------------------------------------------------
 #
 # Details at: https://surveydown.org/manuals/storing-data
@@ -27,10 +26,11 @@ library(surveydown)
 # doing local testing. Once you're ready to collect survey responses, set
 # ignore = FALSE or just delete this argument.
 
-db <- sd_db_connect(
-  ignore = TRUE
-)
+db <- sd_db_connect(ignore = TRUE)
 
+# UI setup --------------------------------------------------------------------
+
+ui <- sd_ui()
 
 # Server setup ----------------------------------------------------------------
 
@@ -64,5 +64,5 @@ server <- function(input, output, session) {
 
 }
 
-# shinyApp() initiates your app - don't change it
-shiny::shinyApp(ui = sd_ui(), server = server)
+# Launch the app
+shiny::shinyApp(ui = ui, server = server)

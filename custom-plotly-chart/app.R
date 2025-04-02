@@ -13,7 +13,6 @@ library(surveydown)
 library(shiny)
 library(plotly)
 
-
 # Database setup --------------------------------------------------------------
 #
 # Details at: https://surveydown.org/manuals/storing-data
@@ -35,6 +34,9 @@ library(plotly)
 
 db <- sd_db_connect(ignore = TRUE)
 
+# UI setup --------------------------------------------------------------------
+
+ui <- sd_ui()
 
 # Server setup ----------------------------------------------------------------
 
@@ -74,5 +76,5 @@ server <- function(input, output, session) {
   sd_server(db = db, use_cookies = FALSE)
 }
 
-# shinyApp() initiates your app - don't change it
-shiny::shinyApp(ui = sd_ui(), server = server)
+# Launch the app
+shiny::shinyApp(ui = ui, server = server)

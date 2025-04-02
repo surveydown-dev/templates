@@ -10,7 +10,7 @@ footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/sur
 library(surveydown)
 ```
 
-::: {#welcome .sd-page}
+::: {.sd_page id=welcome}
 
 # Demo - Conditional Display
 
@@ -31,7 +31,7 @@ sd_next()
 
 :::
 
-::: {#basic_showif .sd-page}
+::: {.sd_page id=basic_showif}
 
 ## 1. Simple conditional display
 
@@ -63,7 +63,7 @@ sd_next()
 
 :::
 
-::: {#custom_showif .sd-page}
+::: {.sd_page id=custom_showif}
 
 ## 2. Complex conditional display
 
@@ -103,7 +103,7 @@ sd_next()
 
 :::
 
-::: {#numeric_show_if .sd-page}
+::: {.sd_page id=numeric_show_if}
 
 ## 3. Conditional display based on a numeric value
 
@@ -135,7 +135,7 @@ sd_next()
 
 :::
 
-::: {#multi_show_if .sd-page}
+::: {.sd_page id=multi_show_if}
 
 ## 4. Conditional display based on multiple inputs
 
@@ -177,7 +177,7 @@ sd_next()
 
 :::
 
-::: {#end .sd-page}
+::: {.sd_page id=end}
 
 ## This is the end of the demo survey showcasing the conditional display feature.
 

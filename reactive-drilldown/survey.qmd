@@ -10,7 +10,7 @@ footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/sur
 library(surveydown)
 ```
 
-::: {#page1 .sd-page}
+::: {.sd_page id=vehicle}
 
 # Demo - drilldown
 
@@ -44,7 +44,7 @@ sd_next()
 
 :::
 
-::: {#end .sd-page}
+::: {.sd_page id=end}
 
 ```{r}
 sd_close()

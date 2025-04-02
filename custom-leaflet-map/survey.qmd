@@ -10,7 +10,7 @@ footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/sur
 library(surveydown)
 ```
 
-::: {#map_of_usa .sd-page}
+::: {.sd_page id=map_of_usa}
 
 # Demo - Custom Leaflet Map
 
@@ -28,7 +28,7 @@ sd_next()
 
 :::
 
-::: {#end .sd-page}
+::: {.sd_page id=end}
 
 ## End
 

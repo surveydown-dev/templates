@@ -10,7 +10,7 @@ footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/sur
 library(surveydown)
 ```
 
-::: {#welcome .sd-page}
+::: {.sd_page id=welcome}
 
 # Demo - Random Labels
 
@@ -27,7 +27,7 @@ sd_next()
 
 :::
 
-::: {#page2 .sd-page}
+::: {.sd_page id=page2}
 
 This is another page in your survey.
 ```{r}
@@ -36,7 +36,7 @@ sd_next()
 
 :::
 
-::: {#end .sd-page}
+::: {.sd_page id=end}
 
 This it the last page in the survey
 

@@ -8,7 +8,7 @@ warning: false
 library(surveydown)
 ```
 
-::: {#welcome .sd-page}
+::: {.sd_page id=welcome}
 
 # Demo - Reactive Plot
 
@@ -41,7 +41,7 @@ sd_next()
 
 :::
 
-::: {#results .sd-page}
+::: {.sd_page id=results}
 
 You chose: **`r sd_output("penguins", type = "value")`**
 

@@ -10,7 +10,7 @@ footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/sur
 library(surveydown)
 ```
 
-::: {#welcome .sd-page}
+::: {.sd_page id=welcome}
 
 # Demo - Conditional Skipping
 
@@ -29,7 +29,7 @@ sd_next()
 
 :::
 
-::: {#basic_skipping .sd-page}
+::: {.sd_page id=basic_skipping}
 
 ## 1. Simple skipping
  
@@ -53,7 +53,7 @@ sd_next()
 
 :::
 
-::: {#custom_skipping .sd-page}
+::: {.sd_page id=custom_skipping}
 
 ## 2. Complex skipping
  
@@ -85,7 +85,7 @@ sd_next()
 
 :::
 
-::: {#end .sd-page}
+::: {.sd_page id=end}
 
 ## End page
 
@@ -97,7 +97,7 @@ sd_close()
 
 :::
 
-::: {#screenout .sd-page}
+::: {.sd_page id=screenout}
 
 ## Screenout page
 

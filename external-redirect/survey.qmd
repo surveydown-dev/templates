@@ -8,7 +8,7 @@ warning: false
 library(surveydown)
 ```
 
-::: {#welcome .sd-page}
+::: {.sd_page id=welcome}
 
 # Demo - External Redirect
 
@@ -69,7 +69,7 @@ sd_next()
 
 :::
 
-::: {#end_page_1 .sd-page}
+::: {.sd_page id=end_page_1}
 
 ## This it the normal ending page with static redirect buttons.
 
@@ -100,7 +100,7 @@ sd_redirect(
 
 :::
 
-::: {#end_page_2 .sd-page}
+::: {.sd_page id=end_page_2}
 
 ## This it the normal ending page with reactive redirect button.
 
@@ -112,7 +112,7 @@ sd_output("redirect_normal")
 
 :::
 
-::: {#screenout_page .sd-page}
+::: {.sd_page id=screenout_page}
 
 ## This it the screenout page with reactive redirect button.
 

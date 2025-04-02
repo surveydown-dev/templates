@@ -10,7 +10,7 @@ footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/sur
 library(surveydown)
 ```
 
-::: {#welcome .sd-page}
+::: {.sd_page id=welcome}
 
 # Demo - Question Types
 
@@ -35,7 +35,7 @@ sd_next()
 
 :::
 
-::: {#questionTypes .sd-page}
+::: {.sd_page id=question_types}
 
 # Question types
 
@@ -272,7 +272,7 @@ sd_next()
 
 :::
 
-::: {#question_formatting .sd-page}
+::: {.sd_page id=question_formatting}
 
 # Question formatting
 
@@ -374,7 +374,7 @@ sd_next()
 
 :::
 
-::: {#end .sd-page}
+::: {.sd_page id=end}
 
 ## Thanks for taking our survey!
 

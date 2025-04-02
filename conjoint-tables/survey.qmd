@@ -12,7 +12,7 @@ library(dplyr)
 library(kableExtra)
 ```
 
-::: {#welcome .sd-page}
+::: {.sd_page id=welcome}
 
 # Demo - Choice-based-conjoint Survey
 
@@ -32,7 +32,7 @@ sd_next()
 
 :::
 
-::: {#consent .sd-page}
+::: {.sd_page id=consent}
 
 # Consent
 
@@ -66,7 +66,7 @@ sd_next()
 
 :::
 
-::: {#favorite_fruit .sd-page}
+::: {.sd_page id=favorite_fruit}
 
 # Favorite Fruit
 
@@ -93,7 +93,7 @@ sd_next()
 
 :::
 
-::: {#screening .sd-page}
+::: {.sd_page id=screening}
 
 # Screening Questions
 
@@ -117,7 +117,7 @@ sd_next()
 
 :::
 
-::: {#educational .sd-page}
+::: {.sd_page id=educational}
 
 # Educational Page
 
@@ -157,7 +157,7 @@ sd_next()
 
 :::
 
-::: {#cbc_practice .sd-page}
+::: {.sd_page id=cbc_practice}
 
 # Choice-based Conjoint (cbc) Practice
 
@@ -214,7 +214,7 @@ sd_next()
 
 :::
 
-::: {#cbc_intro .sd-page}
+::: {.sd_page id=cbc_intro}
 
 # Conjoint Question Intro
 
@@ -228,7 +228,7 @@ sd_next()
 
 :::
 
-::: {#cbc_q1 .sd-page}
+::: {.sd_page id=cbc_q1}
 
 <center>
 ## Conjoint Question 1 of 6
@@ -250,7 +250,7 @@ sd_next()
 
 :::
 
-::: {#cbc_q2 .sd-page}
+::: {.sd_page id=cbc_q2}
 
 <center>
 ## Conjoint Question 2 of 6
@@ -272,7 +272,7 @@ sd_next()
 
 :::
 
-::: {#cbc_q3 .sd-page}
+::: {.sd_page id=cbc_q3}
 
 <center>
 ## Conjoint Question 3 of 6
@@ -294,7 +294,7 @@ sd_next()
 
 :::
 
-::: {#cbc_q4 .sd-page}
+::: {.sd_page id=cbc_q4}
 
 <center>
 ## Conjoint Question 4 of 6
@@ -316,7 +316,7 @@ sd_next()
 
 :::
 
-::: {#cbc_q5 .sd-page}
+::: {.sd_page id=cbc_q5}
 
 <center>
 ## Conjoint Question 5 of 6
@@ -338,7 +338,7 @@ sd_next()
 
 :::
 
-::: {#cbc_q6 .sd-page}
+::: {.sd_page id=cbc_q6}
 
 <center>
 ## Conjoint Question 6 of 6
@@ -360,7 +360,7 @@ sd_next()
 
 :::
 
-::: {#apple_knowledge .sd-page}
+::: {.sd_page id=apple_knowledge}
 
 # Apple Knowledge
 
@@ -410,7 +410,7 @@ sd_next()
 
 :::
 
-::: {#demographics .sd-page}
+::: {.sd_page id=demographics}
 
 # Demographics Page
 
@@ -525,7 +525,7 @@ sd_next()
 
 :::
 
-::: {#end_normal .sd-page}
+::: {.sd_page id=end_normal}
 
 # End Page
 
@@ -541,7 +541,7 @@ sd_close()
 
 :::
 
-::: {#end_consent .sd-page}
+::: {.sd_page id=end_consent}
 
 # End Page
 
@@ -553,7 +553,7 @@ sd_close()
 
 :::
 
-::: {#end_screenout .sd-page}
+::: {.sd_page id=end_screenout}
 
 # End Page
 

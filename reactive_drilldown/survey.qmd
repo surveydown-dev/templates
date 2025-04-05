@@ -3,7 +3,7 @@ format: html
 echo: false
 warning: false
 footer-left: "Made with [surveydown](https://surveydown.org)"
-footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
 ---
 
 ```{r}
@@ -12,13 +12,13 @@ library(surveydown)
 
 ::: {.sd_page id=vehicle}
 
-# Demo - drilldown
+# Template - Reactive drilldown
 
 ::: {.callout-note}
 
 The name of `drilldown` mimics the package name `surveydown`. It means the latter question options are defined from the former selection. It's like "drilling" down from a higher level.
 
-This is a demo of car selection. The **Model** options will change based on the selection of **Make**. By doing this, you'll only see the Models belonging the correct Makes.
+This is an example of car selection. The **Model** options will change based on the selection of **Make**. By doing this, you'll only see the Models belonging the correct Makes.
 
 :::
 

@@ -145,5 +145,5 @@ server <- function(input, output, session) {
   )
 }
 
-# shinyApp() initiates your app - don't change it
+# Launch the app
 shiny::shinyApp(ui = ui, server = server)

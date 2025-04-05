@@ -3,7 +3,7 @@ format: html
 echo: false
 warning: false
 footer-left: "Made with [surveydown](https://surveydown.org)"
-footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
 ---
 
 ```{r}
@@ -12,7 +12,7 @@ library(surveydown)
 
 ::: {.sd_page id=welcome}
 
-# Demo - Conditional Skipping
+# Template - Conditional Skipping
 
 Hi! This is a showcase of the conditional skipping feature that surveydown supports.
 

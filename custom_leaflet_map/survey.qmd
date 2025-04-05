@@ -3,7 +3,7 @@ format: html
 echo: false
 warning: false
 footer-left: "Made with [surveydown](https://surveydown.org)"
-footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
 ---
 
 ```{r}
@@ -12,7 +12,7 @@ library(surveydown)
 
 ::: {.sd_page id=map_of_usa}
 
-# Demo - Custom Leaflet Map
+# Template - Custom Leaflet Map
 
 ```{r}
 #| out.width: "100%"
@@ -35,7 +35,7 @@ sd_next()
 This it the last page in the survey.
 
 ```{r}
-sd_close("Exit Survey")
+sd_close()
 ```
 
 :::

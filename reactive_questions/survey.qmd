@@ -3,7 +3,7 @@ format: html
 echo: false
 warning: false
 footer-left: "Made with [surveydown](https://surveydown.org)"
-footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
 ---
 
 ```{r}
@@ -12,7 +12,7 @@ library(surveydown)
 
 ::: {.sd_page id=welcome}
 
-# Demo - Reactive Question
+# Template - Reactive Question
 
 Hi! This is a showcase of a reactive question that surveydown supports.
 
@@ -39,7 +39,7 @@ sd_next()
 
 ## End
 
-This is the end of the demo survey showcasing the **reactive question**.
+This is the end of the survey template of reactive questions.
 
 ```{r}
 sd_close()

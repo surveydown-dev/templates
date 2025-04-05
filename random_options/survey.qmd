@@ -3,7 +3,7 @@ format: html
 echo: false
 warning: false
 footer-left: "Made with [surveydown](https://surveydown.org)"
-footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
 ---
 
 ```{r}
@@ -12,13 +12,9 @@ library(surveydown)
 
 ::: {.sd_page id=welcome}
 
-# Demo - Predefined Random Labels
+# Template - Random Options
 
-Here is a basic "multiple choice" question where the labels are randomly sampled from 1 to 100.
-
-The random samples are grabbed from a **pre-defined** csv file.
-
-If you refresh the page, the options should change.
+Here is a basic "multiple choice" question where the options are randomly sampled from 1 to 100. The random samples are generated in **real-time**. If you refresh the page, the options should change.
 
 ```{r}
 sd_output("q1", type = "question")

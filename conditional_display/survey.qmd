@@ -3,7 +3,7 @@ format: html
 echo: false
 warning: false
 footer-left: "Made with [surveydown](https://surveydown.org)"
-footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
 ---
 
 ```{r}
@@ -12,7 +12,7 @@ library(surveydown)
 
 ::: {.sd_page id=welcome}
 
-# Demo - Conditional Display
+# Template - Conditional Display
 
 Hi! This is a showcase of the "conditional display" feature that surveydown supports.
 
@@ -179,7 +179,7 @@ sd_next()
 
 ::: {.sd_page id=end}
 
-## This is the end of the demo survey showcasing the conditional display feature.
+## This is the end of the survey template of the conditional display feature.
 
 ```{r}
 sd_close()

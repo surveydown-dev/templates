@@ -3,28 +3,26 @@ format: html
 echo: false
 warning: false
 footer-left: "Made with [surveydown](https://surveydown.org)"
-footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/demos)'
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
 ---
 
 ```{r}
 library(surveydown)
-library(dplyr)
-library(kableExtra)
 ```
 
 ::: {.sd_page id=welcome}
 
-# Demo - Choice-based-conjoint Survey
+# Template - Choice-based-conjoint Survey
 
 ::: {.callout-note}
 
-There are two versions of the conjoint survey: "button" and "table".
+There are two versions of the conjoint survey: "button" and "table". This is the "**button**" version.
 
-This is the "**table**" version. In this version, the conjoint options are shown in a table.
+In this version, the conjoint options are shown in buttons.
 
 :::
 
-This is a demo of choice-based-conjoint survey. For this survey, we will ask you about your preferences for different types of apples.
+This is a template of choice-based-conjoint survey. For this survey, we will ask you about your preferences for different types of apples.
 
 ```{r}
 sd_next()
@@ -166,47 +164,38 @@ We'll now begin the choice tasks. On the next few pages we will show you three o
 ```{r}
 # Define the option vector
 
-cbc_options <- c(
-  "Option 1" = "option_1",   
-  "Option 2" = "option_2", 
-  "Option 3" = "option_3"
-)
+apple_buttons_option <- c("option_1", "option_2", "option_3")
 
-# Make a fixed data frame for the options
+# Change the names of each element to display markdown-formatted
+# text and an embedded image using html
 
-df <- tibble::tibble(
-  altID = c(1, 2, 3),
-  image = c("images/fuji.jpg", "images/pinkLady.jpg", "images/honeycrisp.jpg"),
-  type = c("Fuji", "Pink Lady", "Honeycrisp"),
-  price = c(2, 1.5, 2),
-  freshness = c("Average", "Excellent", "Poor")
-)
-
-alts <- df |>
-  mutate(
-    price = paste(scales::dollar(price), "/ lb"),
-    image = paste0('<img src="', image, '" width=100>')) |>
-  # Make nicer attribute labels
-  select(
-    `Option:` = altID,
-    ` ` = image,
-    `Price:` = price,
-    `Type:` = type,
-    `Freshness:` = freshness)
-row.names(alts) <- NULL # Drop row names
-
-kbl(t(alts), escape = FALSE) |>
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    full_width = FALSE,
-    position = "center"
-  )
+names(apple_buttons_option)[1] <- "
+  **Option 1**<br>
+  <img src='images/fuji.jpg' width=100><br>
+  **Type**: Fuji<br>
+  **Price**: $ 2 / lb<br>
+  **Freshness**: Average
+"
+names(apple_buttons_option)[2] <- "
+  **Option 2**<br>
+  <img src='images/pinkLady.jpg' width=100><br>
+  **Type**: Pink Lady<br>
+  **Price**: $ 1.5 / lb<br>
+  **Freshness**: Excellent
+"
+names(apple_buttons_option)[3] <- "
+  **Option 3**<br>
+  <img src='images/honeycrisp.jpg' width=100><br>
+  **Type**: Honeycrisp<br>
+  **Price**: $ 2 / lb<br>
+  **Freshness**: Poor
+"
 
 sd_question(
   type   = 'mc_buttons',
   id     = 'cbc_practice',
-  label  = "If these were your only options, which would you choose?",
-  option = cbc_options
+  label  = "For example, if these were the only apples available, which would you choose?",
+  option = apple_buttons_option
 )
 
 sd_next()
@@ -230,21 +219,10 @@ sd_next()
 
 ::: {.sd_page id=cbc_q1}
 
-<center>
-## Conjoint Question 1 of 6
-</center>
+# Conjoint Question 1
 
 ```{r}
-sd_output("cbc1_table")
-
-sd_question(
-  type   = 'mc_buttons',
-  id     = 'cbc_q1',
-  label  = "If these were your only options, which would you choose?",
-  option = cbc_options, 
-  width = "600px"
-)
-
+sd_output("cbc_q1", type = "question")
 sd_next()
 ```
 
@@ -252,21 +230,10 @@ sd_next()
 
 ::: {.sd_page id=cbc_q2}
 
-<center>
-## Conjoint Question 2 of 6
-</center>
+# Conjoint Question 2
 
 ```{r}
-sd_output("cbc2_table")
-
-sd_question(
-  type   = 'mc_buttons',
-  id     = 'cbc_q2',
-  label  = "If these were your only options, which would you choose?",
-  option = cbc_options, 
-  width = "600px"
-)
-
+sd_output("cbc_q2", type = "question")
 sd_next()
 ```
 
@@ -274,21 +241,10 @@ sd_next()
 
 ::: {.sd_page id=cbc_q3}
 
-<center>
-## Conjoint Question 3 of 6
-</center>
+# Conjoint Question 3
 
 ```{r}
-sd_output("cbc3_table")
-
-sd_question(
-  type   = 'mc_buttons',
-  id     = 'cbc_q3',
-  label  = "If these were your only options, which would you choose?",
-  option = cbc_options, 
-  width = "600px"
-)
-
+sd_output("cbc_q3", type = "question")
 sd_next()
 ```
 
@@ -296,21 +252,10 @@ sd_next()
 
 ::: {.sd_page id=cbc_q4}
 
-<center>
-## Conjoint Question 4 of 6
-</center>
+# Conjoint Question 4
 
 ```{r}
-sd_output("cbc4_table")
-
-sd_question(
-  type   = 'mc_buttons',
-  id     = 'cbc_q4',
-  label  = "If these were your only options, which would you choose?",
-  option = cbc_options, 
-  width = "600px"
-)
-
+sd_output("cbc_q4", type = "question")
 sd_next()
 ```
 
@@ -318,21 +263,10 @@ sd_next()
 
 ::: {.sd_page id=cbc_q5}
 
-<center>
-## Conjoint Question 5 of 6
-</center>
+# Conjoint Question 5
 
 ```{r}
-sd_output("cbc5_table")
-
-sd_question(
-  type   = 'mc_buttons',
-  id     = 'cbc_q5',
-  label  = "If these were your only options, which would you choose?",
-  option = cbc_options, 
-  width = "600px"
-)
-
+sd_output("cbc_q5", type = "question")
 sd_next()
 ```
 
@@ -340,21 +274,10 @@ sd_next()
 
 ::: {.sd_page id=cbc_q6}
 
-<center>
-## Conjoint Question 6 of 6
-</center>
+# Conjoint Question 6
 
 ```{r}
-sd_output("cbc6_table")
-
-sd_question(
-  type   = 'mc_buttons',
-  id     = 'cbc_q6',
-  label  = "If these were your only options, which would you choose?",
-  option = cbc_options, 
-  width = "600px"
-)
-
+sd_output("cbc_q6", type = "question")
 sd_next()
 ```
 

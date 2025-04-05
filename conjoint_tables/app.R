@@ -3,7 +3,7 @@
 # Install required packages:
 # install.packages("pak")
 # pak::pak(c(
-#   'surveydown-dev/surveydown', # <- Development version from github
+#   'surveydown',
 #   'here',
 #   'glue',
 #   'readr',

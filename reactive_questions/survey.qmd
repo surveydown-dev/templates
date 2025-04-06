@@ -12,11 +12,9 @@ library(surveydown)
 
 ::: {.sd_page id=welcome}
 
-# Template - Reactive Question
+# Template - Reactive Questions
 
-Hi! This is a showcase of a reactive question that surveydown supports.
-
-The second question is hidden by default. It will be shown as long as the first question is answered. It's question label and options will dynamically change based on the choice of the first question.
+There are 2 questions in this survey. The first question is static. The second question is reactive, hidden by default, and will be shown as long as the first question is answered. Its question label and options will dynamically change based on the choice of the first question.
 
 This is done by defining a question in the `server()` function in `app.R`, and call it using `sd_output()` in `survey.qmd`.
 

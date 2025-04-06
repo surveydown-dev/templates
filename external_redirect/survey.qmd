@@ -2,6 +2,8 @@
 format: html
 echo: false
 warning: false
+footer-left: "Made with [surveydown](https://surveydown.org)"
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
 ---
 
 ```{r}
@@ -10,21 +12,11 @@ library(surveydown)
 
 ::: {.sd_page id=welcome}
 
-# Demo - External Redirect
-
-::: {.callout-note}
-
-This is a demo survey showcasing the functionality of <a href="https://surveydown.org" target="_blank">surveydown</a>. It doesn't collect any data.
-
-This demo utilizes cookies (stored in your browser). Use incognito mode for a fresh start.
-
-The GitHub repo of all demos can be accessed <a href="https://github.com/surveydown-dev/demos" target="_blank">here</a>.
-
-:::
+# Template - External Redirect
 
 ::: {.callout-important}
 
-To properly showcase this demo, add this to your URL and press enter:
+To properly showcase this survey, add this to your URL and press enter:
 
 ```{r}
 #| echo: true
@@ -50,7 +42,7 @@ Then your new URL should be:
 
 :::
 
-In this demo, we showcase both the static and reactive redirections.
+In this survey, we showcase both the static and reactive redirections.
 
 ```{r}
 sd_question(

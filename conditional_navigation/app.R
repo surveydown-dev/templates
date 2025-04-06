@@ -2,7 +2,7 @@
 
 # Install required packages:
 # install.packages("pak")
-# pak::pak("surveydown")
+# pak::pak("surveydown-dev/surveydown") # Development version from GitHub
 
 # Load packages
 library(surveydown)
@@ -36,7 +36,7 @@ ui <- sd_ui()
 
 server <- function(input, output, session) {
 
-  # Define any conditional skipping logic here (skip to page if a condition is true)
+  # Define any conditional navigation logic here (navigate to page if a condition is true)
   sd_skip_forward(
     input$vehicle_simple == "no" ~ "screenout",
     input$vehicle_complex == "no" &
@@ -52,4 +52,4 @@ server <- function(input, output, session) {
 }
 
 # Launch the app
-shiny::shinyApp(ui = sd_ui(), server = server)
+shiny::shinyApp(ui = ui, server = server)

@@ -2,7 +2,7 @@
 
 # Install required packages:
 # install.packages("pak")
-# pak::pak("surveydown")
+# pak::pak("surveydown-dev/surveydown") # Development version from GitHub
 
 # Load packages
 library(surveydown)

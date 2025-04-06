@@ -3,7 +3,7 @@
 # Install required packages:
 # install.packages("pak")
 # pak::pak(c(
-#   'surveydown',
+#   'surveydown-dev/surveydown', # Development version from GitHub
 #   'shiny',
 #   'leaflet',
 #   'maps',

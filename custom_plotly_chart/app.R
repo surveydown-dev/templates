@@ -15,7 +15,7 @@ library(plotly)
 
 # Database setup --------------------------------------------------------------
 #
-# Details at: https://surveydown.org/manuals/storing-data
+# Details at: https://surveydown.org/docs/storing-data
 #
 # surveydown stores data on any PostgreSQL database. We recommend
 # https://supabase.com/ for a free and easy to use service.

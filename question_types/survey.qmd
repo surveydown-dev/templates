@@ -20,8 +20,8 @@ Please make your choice below.
 
 ```{r}
 sd_question(
-  type  = 'mc',
   id    = 'skip_to_page',
+  type  = 'mc',
   label = "Where do you want to go to?",
   option = c(
     'Take me to the page on Question Types (the next page)' = 'question_types',
@@ -62,8 +62,8 @@ This page showcases the different types of question supported by `{surveydown}`.
 
 ```{r}
 sd_question(
-  type  = "text",
   id    = "silly_word",
+  type  = "text",
   label = "Write a silly word:"
 )
 ```
@@ -72,8 +72,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type  = "textarea",
   id    = "silly_paragraph",
+  type  = "textarea",
   label = "Write a silly paragraph:"
 )
 ```
@@ -82,8 +82,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type  = 'numeric',
   id    = 'age',
+  type  = 'numeric',
   label = "What's your age?"
 )
 ```
@@ -92,8 +92,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type   = 'mc',
   id     = 'artist',
+  type   = 'mc',
   label  = "Which artist do you prefer most from this list?",
   option = c(
     "Taylor Swift" = "taylor_swift",
@@ -111,8 +111,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type   = 'mc_buttons',
   id     = 'fruit',
+  type   = 'mc_buttons',
   label  = "Which fruit do you prefer most from this list?",
   option = c(
     "Apple"      = "apple",
@@ -130,8 +130,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type  = 'mc_multiple',
   id    = 'swift',
+  type  = 'mc_multiple',
   label = "What are your favorite Taylor Swift albums (select all that apply)?",
   option = c(
     "Taylor Swift (2006)" = "taylor_swift",
@@ -152,8 +152,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type  = 'mc_multiple_buttons',
   id    = 'michael_jackson',
+  type  = 'mc_multiple_buttons',
   label = "Which are your favorite Michael Jackson songs (select all that apply)?",
   option = c(
     "Thriller (1982)"          = "thriller",
@@ -172,8 +172,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type  = 'select',
   id    = 'education',
+  type  = 'select',
   label = "What is the highest level of education you have attained?",
   option = c(
     "Did not attend high school" = "hs_no",
@@ -191,8 +191,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type  = 'slider',
   id    = 'climate_care',
+  type  = 'slider',
   label = "To what extent do you believe human-caused climate change is real?",
   option = c(
     "Don't Believe"    = "dont_believe",
@@ -208,9 +208,9 @@ sd_question(
 
 ```{r}
 sd_question(
-  type = "slider_numeric", 
-  id = 'slider_single_val',  
-  label = 'Single value example', 
+  id = 'slider_single_val',
+  type = "slider_numeric",
+  label = 'Single value example',
   option = seq(0, 10, 1)
 )
 ```
@@ -219,10 +219,10 @@ sd_question(
 
 ```{r}
 sd_question(
-  type = "slider_numeric", 
-  id = 'slider_range',  
-  label = 'Range example', 
-  option = seq(0, 10, 1), 
+  id = 'slider_range',
+  type = "slider_numeric",
+  label = 'Range example',
+  option = seq(0, 10, 1),
   default = c(3, 5)
 )
 ```
@@ -231,8 +231,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type  = 'date',
   id    = 'dob',
+  type  = 'date',
   label = "What is your date of birth?"
 )
 ```
@@ -241,8 +241,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type  = 'daterange',
   id    = 'hs_date',
+  type  = 'daterange',
   label = "When did you start and finish high school?"
 )
 ```
@@ -251,8 +251,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type   = "matrix",
   id     = "car_preference",
+  type   = "matrix",
   label  = "Please indicate your agreement with the following statements.",
   row    = c(
     "I'd like to buy a gasoline car." = "buy_gasoline",
@@ -284,8 +284,8 @@ The `label` argument for any question type can accept markdown formatting. For e
 
 ```{r}
 sd_question(
-  type   = 'mc',
   id     = 'markdown_label',
+  type   = 'mc',
   label  = "**This** is a question *label* supporting ***markdown***:",
   option = c(
     "Option A" = "option_a",
@@ -301,8 +301,8 @@ For `mc_button` type questions, you can also use markdown to format the `option`
 
 ```{r}
 sd_question(
-  type   = 'mc_buttons',
   id     = 'markdown_buttons',
+  type   = 'mc_buttons',
   label  = "The 3 options below support markdown:",
   option = c(
     "*Option A*"     = "option_a",
@@ -316,8 +316,8 @@ The same is true for `mc_multiple_buttons`:
 
 ```{r}
 sd_question(
-  type   = 'mc_multiple_buttons',
   id     = 'markdown_multiple_buttons',
+  type   = 'mc_multiple_buttons',
   label  = "The 3 options below support markdown:",
   option = c(
     "*Option A*"     = "option_a",
@@ -352,8 +352,8 @@ names(html_buttons_option)[3] <- "**Option 3**<br>
     **Freshness**: Poor"
 
 sd_question(
-  type   = 'mc_buttons',
   id     = 'html_buttons',
+  type   = 'mc_buttons',
   label  = "A sample survey question using `mc_buttons`",
   option = html_buttons_option
 )
@@ -363,8 +363,8 @@ sd_question(
 
 ```{r}
 sd_question(
-  type  = "textarea",
   id    = "change_width",
+  type  = "textarea",
   label = "This text area has width set as 40%:",
   width = "40%"
 )

@@ -1,0 +1,145 @@
+# ! JUST READ - don't change the content of this file
+# Question structure extracted from survey.html
+silly_word:
+  type: text
+  label: 'Write a silly word:'
+silly_paragraph:
+  type: textarea
+  label: 'Write a silly paragraph:'
+age:
+  type: numeric
+  label: What’s your age?
+artist:
+  type: mc
+  label: Which artist do you prefer most from this list?
+  options:
+    Taylor Swift: taylor_swift
+    Beyoncé: beyonce
+    Adele: adele
+    Rihanna: rihanna
+    Lady Gaga: ladygaga
+    Ed Sheeran: ed_sheeran
+    Drake: drake
+fruit:
+  type: mc_buttons
+  label: Which fruit do you prefer most from this list?
+  options:
+    Apple: apple
+    Banana: banana
+    Pear: pear
+    Strawberry: strawberry
+    Grape: grape
+    Mango: mango
+    Watermelon: watermelon
+swift:
+  type: mc_multiple
+  label: What are your favorite Taylor Swift albums (select all that apply)?
+  options:
+    Taylor Swift (2006): taylor_swift
+    Fearless (2008): fearless
+    Speak Now (2010): speak_now
+    Red (2012): red
+    1989 (2014): '1989'
+    Reputation (2017): reputation
+    Lover (2019): lover
+    Folklore (2020): folklore
+    Evermore (2020): evermore
+    Midnights (2022): midnights
+michael_jackson:
+  type: mc_multiple_buttons
+  label: Which are your favorite Michael Jackson songs (select all that apply)?
+  options:
+    Thriller (1982): thriller
+    Billie Jean (1982): billie_jean
+    Beat It (1982): beat_it
+    Man in the Mirror (1987): man_in_the_mirror
+    Smooth Criminal (1987): smooth_criminal
+    Black or White (1991): black_or_white
+    Bad (1987): bad
+    Human Nature (1982): human_nature
+education:
+  type: select
+  label: What is the highest level of education you have attained?
+  options:
+    Did not attend high school: hs_no
+    Some high school: hs_some
+    High school graduate: hs_grad
+    Some college: college_some
+    College: college_grad
+    Graduate Work: grad
+    Prefer not to say: no_response
+climate_care:
+  type: slider
+  label: To what extent do you believe human-caused climate change is real?
+  options:
+    Don't Believe: don_t_believe
+    Somewhat Believe: somewhat_believe
+    Neutral: neutral
+    Believe: believe
+    Strongly Believe: strongly_believe
+slider_single_val:
+  type: slider_numeric
+  label: Single value example
+  default: 5.0
+  options:
+    '0': 0.0
+    '1': 1.0
+    '2': 2.0
+    '3': 3.0
+    '4': 4.0
+    '5': 5.0
+    '6': 6.0
+    '7': 7.0
+    '8': 8.0
+    '9': 9.0
+    '10': 10.0
+slider_range:
+  type: slider_numeric
+  label: Range example
+  is_range: yes
+  default:
+  - 3.0
+  - 5.0
+  options:
+    '0': 0.0
+    '1': 1.0
+    '2': 2.0
+    '3': 3.0
+    '4': 4.0
+    '5': 5.0
+    '6': 6.0
+    '7': 7.0
+    '8': 8.0
+    '9': 9.0
+    '10': 10.0
+dob:
+  type: date
+  label: What is your date of birth?
+hs_date:
+  type: daterange
+  label: When did you start and finish high school?
+car_preference:
+  type: matrix
+  label: Please indicate your agreement with the following statements.
+  options:
+    Disagree: disagree
+    Neutral: neutral
+    Agree: agree
+  row:
+    I'd like to buy a gasoline car.: buy_gasoline
+    I'd like to buy an EV.: buy_ev
+car_preference_buy_gasoline:
+  type: mc
+  label: []
+  options:
+    Disagree: disagree
+    Neutral: neutral
+    Agree: agree
+car_preference_buy_ev:
+  type: mc
+  label: []
+  options:
+    Disagree: disagree
+    Neutral: neutral
+    Agree: agree
+

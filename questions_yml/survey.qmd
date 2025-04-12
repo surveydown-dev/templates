@@ -1,0 +1,159 @@
+---
+format: html
+echo: false
+warning: false
+footer-left: "Made with [surveydown](https://surveydown.org)"
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
+---
+
+```{r}
+library(surveydown)
+```
+
+::: {.sd_page id=welcome}
+
+# Template - Questions Created with YAML File
+
+This is a showcase of defining questions with a `questions.yml` file.
+
+The `sd_question()` allows a `yml` argument default to `"questions.yml"`. If you have such file in your project root folder, you can use it to support your question definition.
+
+You can also change to other file name or directory and define questions like this:
+
+```{r}
+#| eval: false
+#| echo: true
+sd_question(
+  id = "your_question_id",
+  yml = "folder_name/file_name.yml"
+)
+```
+
+Please click on the "Next" button to see the demo questions.
+
+```{r}
+sd_next()
+```
+
+:::
+
+::: {.sd_page id=question_types}
+
+# Question types
+
+This page showcases the different types of question supported by `{surveydown}`. They are all defined in `"questions.yml"` and called by `sd_question(id = "question_id")`.
+
+The question types are:
+
+  - `text`: Single line open text input.
+  - `textarea`: Multiple line open text input.
+  - `numeric`: Single line numeric text input.
+  - `mc`: Multiple choice with a single select option (radio buttons).
+  - `mc_buttons`: Same as `mc` but as a "button" style instead of radio buttons.
+  - `mc_multiple`: Multiple choice with mutliple select options (check boxes).
+  - `mc_multiple_buttons`: Same as `mc_multiple` but as a "button" style instead of check boxes.
+  - `select`: Select a choice from a dropdown menu.
+  - `slider`: Slider to select discrete categories or continuous numbers.
+  - `date`: Select a date from a calendar widget.
+  - `daterange`: Select two dates from calendar widgets (e.g. begin and end dates).
+  - `matrix`: Several questions with same list of options. Each question is in fact an `mc` question.
+
+#### Use `type = 'text'` to specify a text input type question:
+
+```{r}
+sd_question("silly_word")
+```
+
+#### Use `type = 'textarea'` to specify a textarea input type question:
+
+```{r}
+sd_question("silly_paragraph")
+```
+
+#### Use `type = 'numeric'` to specify a numeric input type:
+
+```{r}
+sd_question("age")
+```
+
+#### Use `type = 'mc'` to specify a multiple choice type question with a single choice option:
+
+```{r}
+sd_question("artist")
+```
+
+#### Use `type = 'mc_buttons'` to generate the button version of `mc`:
+
+```{r}
+sd_question("fruit")
+```
+
+#### Use `type = 'mc_multiple'` to specify a multiple choice type question with multiple selection enabled:
+
+```{r}
+sd_question("swift")
+```
+
+#### Use `type = 'mc_multiple_buttons'` to generate the button version of `mc_multiple`:
+
+```{r}
+sd_question("michael_jackson")
+```
+
+#### Use `type = 'select'` to specify a drop down select type question:
+
+```{r}
+sd_question("education")
+```
+
+#### Use `type = 'slider'` to specify a slider input type:
+
+```{r}
+sd_question("climate_care")
+```
+
+#### Use `type = 'slider_numeric'` to specify a numeric slider input type:
+
+```{r}
+sd_question("slider_single_val")
+```
+
+#### `type = 'slider_numeric'` can also be used for range selection (2 numerics):
+
+```{r}
+sd_question("slider_range")
+```
+
+#### Use `type = 'date'` to specify a date input type:
+
+```{r}
+sd_question("dob")
+```
+
+#### Use `type = 'daterange'` to specify a daterange input type:
+
+```{r}
+sd_question("hs_date")
+```
+
+#### Use `type = 'matrix'` to specify a matrix input type:
+
+```{r}
+sd_question("car_preference")
+```
+
+```{r}
+sd_next()
+```
+
+:::
+
+::: {.sd_page id=end}
+
+## Thanks for taking our survey!
+
+```{r}
+sd_close()
+```
+
+:::

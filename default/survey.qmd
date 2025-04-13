@@ -12,9 +12,9 @@ library(surveydown)
 
 ::: {.sd_page id=welcome}
 
-# Plain Template
+# Default Template
 
-Welcome to surveydown! This is a plain template of a surveydown survey. It has two pages with one question on each page.
+Welcome to surveydown! This is a default template of a surveydown survey. It has two pages with one question on each page.
 
 Here is a basic "multiple choice" question:
 

@@ -12,7 +12,7 @@ library(surveydown)
 
 ::: {.sd_page id=welcome}
 
-# Template - Questions Created with YAML File
+# Template - Questions Defined with YAML
 
 This is a showcase of defining questions with a `questions.yml` file.
 

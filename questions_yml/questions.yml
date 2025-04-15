@@ -1,5 +1,5 @@
-# ! JUST READ - don't change the content of this file
-# Question structure extracted from survey.html
+# This question structure is a copy and paste from the _survey/ folder.
+# Feel free to use it as a starting point for your own question structure.
 silly_word:
   type: text
   label: 'Write a silly word:'

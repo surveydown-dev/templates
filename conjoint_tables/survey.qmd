@@ -157,7 +157,7 @@ sd_next()
 
 :::
 
-::: {.sd_page id=cbc_practice}
+::: {.sd_page id=cbc_practice_page}
 
 # Choice-based Conjoint (cbc) Practice
 
@@ -228,7 +228,7 @@ sd_next()
 
 :::
 
-::: {.sd_page id=cbc_q1}
+::: {.sd_page id=cbc_q1_page}
 
 <center>
 ## Conjoint Question 1 of 6
@@ -250,7 +250,7 @@ sd_next()
 
 :::
 
-::: {.sd_page id=cbc_q2}
+::: {.sd_page id=cbc_q2_page}
 
 <center>
 ## Conjoint Question 2 of 6
@@ -272,7 +272,7 @@ sd_next()
 
 :::
 
-::: {.sd_page id=cbc_q3}
+::: {.sd_page id=cbc_q3_page}
 
 <center>
 ## Conjoint Question 3 of 6
@@ -294,7 +294,7 @@ sd_next()
 
 :::
 
-::: {.sd_page id=cbc_q4}
+::: {.sd_page id=cbc_q4_page}
 
 <center>
 ## Conjoint Question 4 of 6
@@ -316,7 +316,7 @@ sd_next()
 
 :::
 
-::: {.sd_page id=cbc_q5}
+::: {.sd_page id=cbc_q5_page}
 
 <center>
 ## Conjoint Question 5 of 6
@@ -338,7 +338,7 @@ sd_next()
 
 :::
 
-::: {.sd_page id=cbc_q6}
+::: {.sd_page id=cbc_q6_page}
 
 <center>
 ## Conjoint Question 6 of 6

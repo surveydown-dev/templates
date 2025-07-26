@@ -45,19 +45,17 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
+  # Use database connection for persistent functions
+  sd_use_db(db)
 
   # Make a 10-digit random number completion code
-  completion_code <- sd_completion_code(10)
-
-  # Store the completion code in the survey data
-  sd_store_value(completion_code)
+  completion_code <- sd_completion_code(10, id = "completion_code")
 
   # Read in the full survey design file
   design <- read_csv(here("data", "choice_questions.csv"))
 
-  # Sample a random respondentID and store it in your data
-  respondentID <- sample(design$respID, 1)
-  sd_store_value(respondentID, "respID")
+  # Sample a random respondentID and store it directly as "respID"
+  respondentID <- sd_sample(design$respID, id = "respID")
 
   # Filter for the rows for the chosen respondentID
   df <- design |>
@@ -74,27 +72,33 @@ server <- function(input, output, session) {
     options <- c("option_1", "option_2", "option_3")
 
     names(options) <- c(
-      glue("
+      glue(
+        "
       **Option 1**<br>
       <img src='{alt1$image}' width=100><br>
       **Type**: {alt1$type}<br>
       **Price**: $ {alt1$price} / lb<br>
       **Freshness**: {alt1$freshness}
-    "),
-      glue("
+    "
+      ),
+      glue(
+        "
       **Option 2**<br>
       <img src='{alt2$image}' width=100><br>
       **Type**: {alt2$type}<br>
       **Price**: $ {alt2$price} / lb<br>
       **Freshness**: {alt2$freshness}
-    "),
-      glue("
+    "
+      ),
+      glue(
+        "
       **Option 3**<br>
       <img src='{alt3$image}' width=100><br>
       **Type**: {alt3$type}<br>
       **Price**: $ {alt3$price} / lb<br>
       **Freshness**: {alt3$freshness}
-    ")
+    "
+      )
     )
     return(options)
   }
@@ -111,49 +115,49 @@ server <- function(input, output, session) {
   # Example: sd_output('cbc_q1', type = 'question')
 
   sd_question(
-    type   = 'mc_buttons',
-    id     = 'cbc_q1',
-    label  = "(1 of 6) If these were your only options, which would you choose?",
+    type = 'mc_buttons',
+    id = 'cbc_q1',
+    label = "(1 of 6) If these were your only options, which would you choose?",
     option = cbc1_options
   )
 
   sd_question(
-    type   = 'mc_buttons',
-    id     = 'cbc_q2',
-    label  = "(2 of 6) If these were your only options, which would you choose?",
+    type = 'mc_buttons',
+    id = 'cbc_q2',
+    label = "(2 of 6) If these were your only options, which would you choose?",
     option = cbc2_options
   )
 
   sd_question(
-    type   = 'mc_buttons',
-    id     = 'cbc_q3',
-    label  = "(3 of 6) If these were your only options, which would you choose?",
+    type = 'mc_buttons',
+    id = 'cbc_q3',
+    label = "(3 of 6) If these were your only options, which would you choose?",
     option = cbc3_options
   )
 
   sd_question(
-    type   = 'mc_buttons',
-    id     = 'cbc_q4',
-    label  = "(4 of 6) If these were your only options, which would you choose?",
+    type = 'mc_buttons',
+    id = 'cbc_q4',
+    label = "(4 of 6) If these were your only options, which would you choose?",
     option = cbc4_options
   )
 
   sd_question(
-    type   = 'mc_buttons',
-    id     = 'cbc_q5',
-    label  = "(5 of 6) If these were your only options, which would you choose?",
+    type = 'mc_buttons',
+    id = 'cbc_q5',
+    label = "(5 of 6) If these were your only options, which would you choose?",
     option = cbc5_options
   )
 
   sd_question(
-    type   = 'mc_buttons',
-    id     = 'cbc_q6',
-    label  = "(6 of 6) If these were your only options, which would you choose?",
+    type = 'mc_buttons',
+    id = 'cbc_q6',
+    label = "(6 of 6) If these were your only options, which would you choose?",
     option = cbc6_options
   )
 
   # Define any conditional skip logic here (skip to page if a condition is true)
-  sd_skip_if(
+  sd_skip_forward(
     input$screenout == "blue" ~ "end_screenout",
     input$consent_age == "no" ~ "end_consent",
     input$consent_understand == "no" ~ "end_consent"
@@ -171,7 +175,6 @@ server <- function(input, output, session) {
     rate_survey = TRUE,
     all_questions_required = TRUE
   )
-
 }
 
 # Launch the app

@@ -36,7 +36,7 @@ library(readr)
 # doing local testing. Once you're ready to collect survey responses, set
 # ignore = FALSE or just delete this argument.
 
-db <- sd_db_connect(ignore = TRUE)
+db <- sd_db_connect()
 
 # UI setup --------------------------------------------------------------------
 
@@ -45,17 +45,16 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-  # Use database connection for persistent functions
-  sd_use_db(db)
-
   # Make a 10-digit random number completion code
-  completion_code <- sd_completion_code(10, id = "completion_code")
+  completion_code <- sd_completion_code(10)
+  sd_store_value(completion_code, auto_assign = TRUE)
 
   # Read in the full survey design file
   design <- read_csv(here("data", "choice_questions.csv"))
 
   # Sample a random respondentID and store it directly as "respID"
-  respondentID <- sd_sample(design$respID, id = "respID")
+  respondentID <- sample(design$respID, 1)
+  sd_store_value(respondentID, "respID", auto_assign = TRUE)
 
   # Filter for the rows for the chosen respondentID
   df <- design |>

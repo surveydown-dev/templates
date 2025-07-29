@@ -50,8 +50,6 @@ server <- function(input, output, session) {
 
   # Make a 10-digit random number completion code
   completion_code <- sd_completion_code(10)
-
-  # Store the completion code in the survey data
   sd_store_value(completion_code)
 
   # Read in the full survey design file
@@ -100,7 +98,7 @@ server <- function(input, output, session) {
   output$cbc6_table <- make_cbc_table(df |> filter(qID == 6))
 
   # Define any conditional skip logic here (skip to page if a condition is true)
-  sd_skip_if(
+  sd_skip_forward(
     input$screenout == "blue" ~ "end_screenout",
     input$consent_age == "no" ~ "end_consent",
     input$consent_understand == "no" ~ "end_consent"

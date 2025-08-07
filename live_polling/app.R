@@ -41,7 +41,6 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-
     # Refresh data every 5 seconds
     data <- sd_get_data(db, refresh_interval = 5)
 
@@ -49,20 +48,17 @@ server <- function(input, output, session) {
     output$penguin_plot <- renderPlot({
         data() |> # Note the () here, as this is a reactive expression
             count(penguins) |>
-            mutate(penguins = ifelse(penguins == '', 'No response', penguins)) |>
+            mutate(
+                penguins = ifelse(penguins == '', 'No response', penguins)
+            ) |>
             ggplot() +
             geom_col(aes(x = n, y = reorder(penguins, n)), width = 0.7) +
             theme_minimal() +
             labs(x = "Count", y = "Penguin Type", title = "Penguin Count")
     })
 
-    # Database designation and other settings
-    sd_server(
-        db = db,
-        all_questions_required = TRUE,
-        use_cookies = FALSE
-    )
-
+    # Run surveydown server and define database
+    sd_server(db = db)
 }
 
 # Launch the app

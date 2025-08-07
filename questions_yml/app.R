@@ -35,6 +35,7 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
+  # Run surveydown server and define database
   sd_server(db = db)
 }
 

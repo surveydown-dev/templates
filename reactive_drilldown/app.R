@@ -48,35 +48,31 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-
   makes <- unique(cars$make)
   names(makes) <- makes
 
   sd_question(
-    type   = "select",
-    id     = "make",
-    label  = "Make:",
+    type = "select",
+    id = "make",
+    label = "Make:",
     option = makes
   )
 
   observe({
-    make_selected_df <- cars[which(input$make == cars$make),]
+    make_selected_df <- cars[which(input$make == cars$make), ]
     models <- make_selected_df$model
     names(models) <- models
 
     sd_question(
-      type   = "select",
-      id     = "model",
-      label  = "Model:",
+      type = "select",
+      id = "model",
+      label = "Model:",
       option = models
     )
   })
 
-  # Database designation and other settings
-  sd_server(
-    db = db,
-    all_questions_required = TRUE
-  )
+  # Run surveydown server and define database
+  sd_server(db = db)
 }
 
 # Launch the app

@@ -53,10 +53,8 @@ states$name <- tools::toTitleCase(states$ID)
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-
   # Helper function for modifying the leaflet map layout
   map_layout <- function(map, states, selected_state = NULL) {
-
     # Set the state fill colors
     color <- "lightblue"
     if (!is.null(selected_state)) {
@@ -92,19 +90,23 @@ server <- function(input, output, session) {
 
   # Create the main leaflet map widget
   output$usa_map <- renderLeaflet({
-    leaflet(options = leafletOptions(
-      preferCanvas = TRUE,
-      scrollWheelZoom = FALSE
-    )) |>
+    leaflet(
+      options = leafletOptions(
+        preferCanvas = TRUE,
+        scrollWheelZoom = FALSE
+      )
+    ) |>
       addTiles() |>
       setView(lng = -98.5795, lat = 39.8283, zoom = 4) |>
       addEasyButton(easyButton(
         position = "bottomleft",
         icon = "fa-undo",
         title = "Reset View",
-        onClick = JS("function(btn, map){
+        onClick = JS(
+          "function(btn, map){
         map.setView([39.8283, -98.5795], 4);
-      }")
+      }"
+        )
       )) |>
       map_layout(states)
   })
@@ -137,12 +139,8 @@ server <- function(input, output, session) {
     value = selected_state
   )
 
-  # Other surveydown settings
-  sd_server(
-    db = db,
-    use_cookies = FALSE,
-    all_questions_required = TRUE
-  )
+  # Run surveydown server and define database
+  sd_server(db = db)
 }
 
 # Launch the app

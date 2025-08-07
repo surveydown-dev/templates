@@ -35,7 +35,6 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-
     # Reactive expression that generates a url for a normal ending
     url_normal <- reactive({
         params <- sd_get_url_pars()
@@ -43,9 +42,12 @@ server <- function(input, output, session) {
         id_b <- params["id_b"]
         id_c <- params["id_c"]
         return(paste0(
-            "https://www.google.com?id_a=", id_a,
-            "id_b=", id_b,
-            "id_c=", id_c,
+            "https://www.google.com?id_a=",
+            id_a,
+            "id_b=",
+            id_b,
+            "id_c=",
+            id_c,
             "&status=0" # status of 0 indicates normal endin
         ))
     })
@@ -57,9 +59,12 @@ server <- function(input, output, session) {
         id_b <- params["id_b"]
         id_c <- params["id_c"]
         return(paste0(
-            "https://www.google.com?id_a=", id_a,
-            "id_b=", id_b,
-            "id_c=", id_c,
+            "https://www.google.com?id_a=",
+            id_a,
+            "id_b=",
+            id_b,
+            "id_c=",
+            id_c,
             "&status=1" # status of 1 indicates screenout
         ))
     })
@@ -87,12 +92,8 @@ server <- function(input, output, session) {
         input$screening_question == "screenout" ~ "screenout_page"
     )
 
-    # Database designation and other settings
-    sd_server(
-        db = db,
-        all_questions_required = TRUE
-    )
-
+    # Run surveydown server and define database
+    sd_server(db = db)
 }
 
 # Launch the app

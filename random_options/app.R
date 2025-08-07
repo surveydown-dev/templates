@@ -35,7 +35,6 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-
   # Create a vector of options
   q1_options <- c('option 1', 'option 2', 'option 3')
 
@@ -51,18 +50,14 @@ server <- function(input, output, session) {
 
   # Create a reactive question
   sd_question(
-    id     = "q1",
-    type   = "mc",
-    label  = "Which of these numbers is the largest?",
+    id = "q1",
+    type = "mc",
+    label = "Which of these numbers is the largest?",
     option = q1_options
   )
 
-  # Database designation and other settings
-  sd_server(
-    db = db,
-    all_questions_required = TRUE
-  )
-
+  # Run surveydown server and define database
+  sd_server(db = db)
 }
 
 # Launch the app

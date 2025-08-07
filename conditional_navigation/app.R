@@ -35,20 +35,16 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-
   # Define any conditional navigation logic here (navigate to page if a condition is true)
   sd_skip_forward(
     input$vehicle_simple == "no" ~ "screenout",
     input$vehicle_complex == "no" &
-      input$buy_vehicle == "no" ~ "screenout"
-
+      input$buy_vehicle == "no" ~
+      "screenout"
   )
 
-  # Other settings
-  sd_server(
-    db = db,
-    all_questions_required = TRUE
-  )
+  # Run surveydown server and define database
+  sd_server(db = db)
 }
 
 # Launch the app

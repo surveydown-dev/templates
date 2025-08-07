@@ -47,7 +47,6 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-
   # Make a 10-digit random number completion code
   completion_code <- sd_completion_code(10)
   sd_store_value(completion_code)
@@ -70,14 +69,16 @@ server <- function(input, output, session) {
     alts <- df %>%
       mutate(
         price = paste(scales::dollar(price), "/ lb"),
-        image = paste0('<img src="', image, '" width=100>')) %>%
+        image = paste0('<img src="', image, '" width=100>')
+      ) %>%
       # Make nicer attribute labels
       select(
         `Option:` = altID,
         ` ` = image,
         `Price:` = price,
         `Type:` = type,
-        `Freshness:` = freshness)
+        `Freshness:` = freshness
+      )
     row.names(alts) <- NULL # Drop row names
 
     table <- kbl(t(alts), escape = FALSE) %>%
@@ -86,7 +87,9 @@ server <- function(input, output, session) {
         full_width = FALSE,
         position = "center"
       )
-    function() { table }
+    function() {
+      table
+    }
   }
 
   # Create the options for each choice question
@@ -109,12 +112,8 @@ server <- function(input, output, session) {
     input$like_fruit %in% c("yes", "kind_of") ~ "fav_fruit"
   )
 
-  # Database designation and other settings
-  sd_server(
-    db = db,
-    all_questions_required = FALSE
-  )
-
+  # Run surveydown server and define database
+  sd_server(db = db)
 }
 
 # Launch the app

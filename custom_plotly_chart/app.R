@@ -42,14 +42,17 @@ ui <- sd_ui()
 
 # Example with plotly
 server <- function(input, output, session) {
-
   # Create plotly output
   output$scatter_plot <- renderPlotly({
-    plot_ly(mtcars, x = ~wt, y = ~mpg,
-            type = "scatter",
-            mode = "markers",
-            source = "scatter_plot") %>%  # Add source identifier
-      layout(dragmode = "select")       # Enable point selection
+    plot_ly(
+      mtcars,
+      x = ~wt,
+      y = ~mpg,
+      type = "scatter",
+      mode = "markers",
+      source = "scatter_plot"
+    ) %>% # Add source identifier
+      layout(dragmode = "select") # Enable point selection
   })
 
   # Reactive value for selected point
@@ -73,7 +76,8 @@ server <- function(input, output, session) {
     value = selected_point
   )
 
-  sd_server(db = db, use_cookies = FALSE)
+  # Run surveydown server and define database
+  sd_server(db = db)
 }
 
 # Launch the app

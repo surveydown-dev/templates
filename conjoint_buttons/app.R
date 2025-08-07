@@ -167,10 +167,8 @@ server <- function(input, output, session) {
     input$like_fruit %in% c("yes", "kind_of") ~ "fav_fruit"
   )
 
-  # Database designation and other settings
-  sd_server(
-    db = db
-  )
+  # Run surveydown server and define database
+  sd_server(db = db)
 }
 
 # Launch the app

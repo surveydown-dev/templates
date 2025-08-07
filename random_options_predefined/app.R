@@ -41,7 +41,6 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-
   # Read in the design file (generated in the 'make-design.R' file)
   design <- read_csv("design.csv")
 
@@ -62,18 +61,14 @@ server <- function(input, output, session) {
 
   # Create the reactive question
   sd_question(
-    id     = "q1",
-    type   = "mc",
-    label  = "Which of these numbers is the largest?",
+    id = "q1",
+    type = "mc",
+    label = "Which of these numbers is the largest?",
     option = q1_options
   )
 
-  # Database designation and other settings
-  sd_server(
-    db = db,
-    all_questions_required = TRUE
-  )
-
+  # Run surveydown server and define database
+  sd_server(db = db)
 }
 
 # Launch the app

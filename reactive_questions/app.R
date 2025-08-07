@@ -39,16 +39,16 @@ server <- function(input, output, session) {
     pet_type <- input$pet_type
 
     # Make the question label and options
-    label <-glue::glue("Are you a {pet_type} owner?")
+    label <- glue::glue("Are you a {pet_type} owner?")
     options <- c('yes', 'no')
     names(options)[1] <- glue::glue("Yes, am a {pet_type} owner")
     names(options)[2] <- glue::glue("No, I am not a {pet_type} owner")
 
     # Make the question
     sd_question(
-      type   = "mc",
-      id     = "pet_owner",
-      label  = label,
+      type = "mc",
+      id = "pet_owner",
+      label = label,
       option = options
     )
   })
@@ -58,11 +58,8 @@ server <- function(input, output, session) {
     !is.null(input$pet_type) ~ "pet_owner"
   )
 
-  # Database designation and other settings
-  sd_server(
-    db = db,
-    all_questions_required = TRUE
-  )
+  # Run surveydown server and define database
+  sd_server(db = db)
 }
 
 # Launch the app

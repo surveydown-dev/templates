@@ -4,6 +4,14 @@ echo: false
 warning: false
 footer-left: "Made with [surveydown](https://surveydown.org)"
 footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
+use_cookies: no
+auto_scroll: yes
+rate_survey: yes
+all_questions_required: yes
+system_language: en
+highlight_unanswered: yes
+highlight_color: blue
+capture_metadata: yes
 ---
 
 ```{r}

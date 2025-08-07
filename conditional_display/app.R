@@ -35,16 +35,15 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-
   # Define any conditional display logic here (show a question if a condition is true)
   sd_show_if(
-
     # Simple conditional display
     input$penguins_simple == "other" ~ "penguins_simple_other",
 
     # Complex conditional display
     input$penguins_complex == "other" &
-      input$show_other == "show" ~ "penguins_complex_other",
+      input$show_other == "show" ~
+      "penguins_complex_other",
 
     # Conditional display based on a numeric value
     as.numeric(input$car_number) > 1 ~ "ev_ownership",
@@ -54,11 +53,8 @@ server <- function(input, output, session) {
     length(input$fav_fruits) > 3 ~ "fruit_number"
   )
 
-  # Database designation and other settings
-  sd_server(
-    db = db,
-    all_questions_required = TRUE
-  )
+  # Run surveydown server and define database
+  sd_server(db = db)
 }
 
 # Launch the app

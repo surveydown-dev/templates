@@ -35,20 +35,14 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-
   # Define any conditional skip logic here (skip to page if a condition is true)
   sd_skip_forward(
     input$skip_to_page == "end" ~ "end",
     input$skip_to_page == "question_formatting" ~ "question_formatting"
   )
 
-  # Database designation and other settings
-  sd_server(
-    db = db,
-    auto_scroll = TRUE,
-    rate_survey = TRUE
-  )
-
+  # Run surveydown server and define database
+  sd_server(db = db)
 }
 
 # Launch the app

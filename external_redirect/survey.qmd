@@ -1,11 +1,26 @@
 ---
+# General Settings
 format: html
 echo: false
 warning: false
+
+# Theme Settings
+theme: default
+barposition: top
 footer-left: "Made with [surveydown](https://surveydown.org)"
 footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
+
+# Survey Settings
 use-cookies: false
-all-questions-required: true
+auto-scroll: false
+rate-survey: false
+system-language: en
+highlight-unanswered: true
+highlight-color: blue
+capture-metadata: true
+all-questions-required: false
+required-questions:
+  - screening_question
 ---
 
 ```{r}

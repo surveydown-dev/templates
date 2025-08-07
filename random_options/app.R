@@ -35,18 +35,25 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-  # Create a vector of options
-  q1_options <- c('option 1', 'option 2', 'option 3')
-
   # Randomly sample 3 values from 1 to 100
   q1_values <- sample(seq(100), 3)
 
-  # The values are assigned to the names() of the options vector,
-  # so the options will be shown to the user as these values.
-  names(q1_options) <- q1_values
+  # Create objects for these 3 values
+  q1_value_1 <- q1_values[1]
+  q1_value_2 <- q1_values[2]
+  q1_value_3 <- q1_values[3]
 
   # Store the values in the database
-  sd_store_value(q1_values, id = "q1_values")
+  sd_store_value(q1_value_1)
+  sd_store_value(q1_value_2)
+  sd_store_value(q1_value_3)
+
+  # Create a vector of options
+  q1_options <- c('option 1', 'option 2', 'option 3')
+
+  # The values are assigned to the names() of the options vector,
+  # so the options will be shown to the user as these values.
+  names(q1_options) <- c(q1_value_1, q1_value_2, q1_value_3)
 
   # Create a reactive question
   sd_question(

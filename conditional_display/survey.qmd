@@ -19,16 +19,6 @@ highlight-unanswered: true
 highlight-color: blue
 capture-metadata: true
 all-questions-required: false
-required-questions:
-  - penguins_simple
-  - penguins_simple_other
-  - penguins_complex
-  - penguins_complex_other
-  - car_number
-  - ev_ownership
-  - fav_fruits
-  - apple_or_banana
-  - fruit_number
 ---
 
 ```{r}
@@ -39,6 +29,10 @@ library(surveydown)
 
 # Template - Conditional Display
 
+::: {.callout-tip}
+For this template, we didn't provide any `required_questions` in the YAML header. However, the questions that are used for judging are automatically set to be required.
+:::
+
 Hi! This is a showcase of the "conditional display" feature that surveydown supports.
 
 It consists of:
@@ -47,6 +41,8 @@ It consists of:
 2. Complex conditional display
 3. Conditional display based on a numeric value
 4. Conditional display based on multiple inputs
+5. Conditional display based on a custom function
+6. Conditional page display
 
 Please proceed to the next page.
 
@@ -200,6 +196,95 @@ sd_question(
 sd_next()
 ```
 
+:::
+
+::: {.sd_page id=custom_function}
+
+## 5. Conditional display based on a custom function
+
+Here I only want to show the car type question if the user owns more than 1 car. If you input a number greater than 1 in the car number question, the car type question will appear.
+
+```{r}
+sd_question(
+  type  = "numeric",
+  id    = "pet_number",
+  label = "How many pet(s) do you have in your household?"
+)
+
+sd_question(
+  type  = "text",
+  id    = "pet_type",
+  label = "Please specify your pet type(s):"
+)
+
+sd_next()
+```
+
+:::
+
+::: {.sd_page id=conditional_page}
+
+## 6. Conditional page display
+
+The `sd_show_if()` function can also be used to conditionally display a page. In this example, if you choose "**Cat**" in the question below, you'll be directed to a cat-related page, and same for the "**Dog**" selection. No matter which option you choose, you won't see the other page.
+
+The flow chart below illustrates how the conditional page display works:
+
+<center>
+<img src="images/conditional_page.png" style="width: 100%; max-width: 600px;">
+</center>
+
+<br>
+
+```{r}
+sd_question(
+  type  = 'mc',
+  id    = 'pet_preference',
+  label = "Which pet do you prefer, cat or dog?",
+  option = c(
+    'Cat' = 'cat',
+    'Dog' = 'dog'
+  )
+)
+
+sd_next()
+```
+
+:::
+
+::: {.sd_page id=cat_page}
+
+## Cat Page
+
+This is the cat page because you chose "**Cat**" in the previous question. You won't see the dog page.
+
+<center>
+<img src="images/cat.png" style="width: 100%; max-width: 800px;">
+</center>
+
+<br>
+
+```{r}
+sd_next()
+```
+
+:::
+
+::: {.sd_page id=dog_page}
+
+## Dog Page
+
+This is the dog page because you chose "**Dog**" in the previous question. You won't see the cat page.
+
+<center>
+<img src="images/dog.png" style="width: 100%; max-width: 800px;">
+</center>
+
+<br>
+
+```{r}
+sd_next()
+```
 :::
 
 ::: {.sd_page id=end}

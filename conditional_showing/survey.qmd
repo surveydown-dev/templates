@@ -27,22 +27,22 @@ library(surveydown)
 
 ::: {.sd_page id=welcome}
 
-# Template - Conditional Display
+# Template - Conditional Showing
 
 ::: {.callout-tip}
 For this template, we didn't provide any `required_questions` in the YAML header. However, the questions that are used for judging are automatically set to be required.
 :::
 
-Hi! This is a showcase of the "conditional display" feature that surveydown supports.
+Hi! This is a showcase of the "conditional showing" feature that surveydown supports.
 
 It consists of:
 
-1. Simple conditional display
-2. Complex conditional display
-3. Conditional display based on a numeric value
-4. Conditional display based on multiple inputs
-5. Conditional display based on a custom function
-6. Conditional page display
+1. Simple conditional showing
+2. Complex conditional showing
+3. Conditional showing based on a numeric value
+4. Conditional showing based on multiple inputs
+5. Conditional showing based on a custom function
+6. Conditional showing for pages
 
 Please proceed to the next page.
 
@@ -54,7 +54,7 @@ sd_next()
 
 ::: {.sd_page id=basic_showif}
 
-## 1. Simple conditional display
+## 1. Simple conditional showing
 
 If the "**Other**" option is chosen, a question asking the other penguin type will appear.
 
@@ -86,7 +86,7 @@ sd_next()
 
 ::: {.sd_page id=custom_showif}
 
-## 2. Complex conditional display
+## 2. Complex conditional showing
 
 Say that we want to have a more complicated `show_if` condition. Now there are 2 questions. Only if the user chooses both "**Other**" and "**Show**" will the other penguin question appear. This is also done by using the `sd_show_if()` function in the `server` of `app.R`.
 
@@ -126,9 +126,9 @@ sd_next()
 
 ::: {.sd_page id=numeric_show_if}
 
-## 3. Conditional display based on a numeric value
+## 3. Conditional showing based on a numeric value
 
-Sometimes you may want to display a question based on a user input value. In the question below, if you type in a value greater than **1**, you'll see the conditional question.
+Sometimes you may want to show a question based on a user input value. In the question below, if you type in a value greater than **1**, you'll see the conditional question.
 
 ::: {.callout-note}
 In surveydown, all input values are stored as string. In the `sd_show_if()` function, use `as.numeric()` to wrap your input in order to change the data type into numeric.
@@ -158,9 +158,9 @@ sd_next()
 
 ::: {.sd_page id=multi_show_if}
 
-## 4. Conditional display based on multiple inputs
+## 4. Conditional showing based on multiple inputs
 
-In other cases, you might display a question based on multiple user input values. The conditions are explained below:
+In other cases, you might show a question based on multiple user input values. The conditions are explained below:
 
 1. If you pick either Apple or Banana, you'll be popped with a question asking how many apples/bananas do you eat per day.
 2. If you pick more than 3 types, you'll be popped with a question as well.
@@ -200,7 +200,7 @@ sd_next()
 
 ::: {.sd_page id=custom_function}
 
-## 5. Conditional display based on a custom function
+## 5. Conditional showing based on a custom function
 
 Here I only want to show the car type question if the user owns more than 1 car. If you input a number greater than 1 in the car number question, the car type question will appear.
 
@@ -224,11 +224,11 @@ sd_next()
 
 ::: {.sd_page id=conditional_page}
 
-## 6. Conditional page display
+## 6. Conditional page showing
 
-The `sd_show_if()` function can also be used to conditionally display a page. In this example, if you choose "**Cat**" in the question below, you'll be directed to a cat-related page, and same for the "**Dog**" selection. No matter which option you choose, you won't see the other page.
+The `sd_show_if()` function can also be used to conditionally show a page. In this example, if you choose "**Cat**" in the question below, you'll be directed to a cat-related page, and same for the "**Dog**" selection. No matter which option you choose, you won't see the other page.
 
-The flow chart below illustrates how the conditional page display works:
+The flow chart below illustrates how the conditional page showing works:
 
 <center>
 <img src="images/conditional_page.png" style="width: 100%; max-width: 600px;">
@@ -289,7 +289,7 @@ sd_next()
 
 ::: {.sd_page id=end}
 
-## This is the end of the survey template of the conditional display feature.
+## This is the end of the survey template of the conditional showing feature.
 
 ```{r}
 sd_close()

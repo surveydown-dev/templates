@@ -45,27 +45,27 @@ server <- function(input, output, session) {
     return(num_pets > 1)
   }
 
-  # Define any conditional display logic here (show a question if a condition is true)
+  # Define any conditional showing logic here (show a question if a condition is true)
   sd_show_if(
-    # 1. Simple conditional display
+    # 1. Simple conditional showing
     input$penguins_simple == "other" ~ "penguins_simple_other",
 
-    # 2. Complex conditional display
+    # 2. Complex conditional showing
     input$penguins_complex == "other" &
       input$show_other == "show" ~
       "penguins_complex_other",
 
-    # 3. Conditional display based on a numeric value
+    # 3. Conditional showing based on a numeric value
     as.numeric(input$car_number) > 1 ~ "ev_ownership",
 
-    # 4. Conditional display based on multiple inputs
+    # 4. Conditional showing based on multiple inputs
     input$fav_fruits %in% c("apple", "banana") ~ "apple_or_banana",
     length(input$fav_fruits) > 3 ~ "fruit_number",
 
-    # 5. Conditional display based on a custom function
+    # 5. Conditional showing based on a custom function
     more_than_one_pet(input) ~ "pet_type",
 
-    # 6. Conditional page display
+    # 6. Conditional page showing
     input$pet_preference == 'cat' ~ 'cat_page',
     input$pet_preference == 'dog' ~ 'dog_page'
   )

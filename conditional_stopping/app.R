@@ -35,12 +35,21 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-  # Define any conditional navigation logic here (navigate to page if a condition is true)
-  sd_skip_forward(
-    input$vehicle_simple == "no" ~ "screenout",
-    input$vehicle_complex == "no" &
-      input$buy_vehicle == "no" ~
-      "screenout"
+  # The conditional stopping logic stops the navigation if a condition is true,
+  # and displays a message.
+  sd_stop_if(
+    # Here we have 3 conditions to check. The first 2 are on page1, and the last
+    # is on page2. There is no need to specify which page the conditions are at.
+    # If the conditions are on the same page, the messages will be shown together.
+
+    # The zip question only accepts a 5-digit response
+    nchar(input$zip) != 5 ~ "Zip code must be 5 digits.",
+
+    # The year of birth question only accepts a year after 1900
+    as.numeric(input$yob) <= 1900 ~ "Year of birth must be after 1900.",
+
+    # The phone number question only accepts a 10-digit response
+    nchar(input$phone) != 10 ~ "Phone number must be 10 digits."
   )
 
   # Run surveydown server and define database

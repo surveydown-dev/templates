@@ -31,14 +31,14 @@ library(surveydown)
 
 ::: {.sd_page id=welcome}
 
-# Template - Conditional Navigation
+# Template - Conditional Skipping
 
-Hi! This is a showcase of the conditional navigation feature that surveydown supports.
+Hi! This is a showcase of the conditional skipping feature that surveydown supports.
 
 It consists of:
 
-1. Simple navigation
-2. Complex navigation
+1. Simple skipping
+2. Complex skipping
 
 Please proceed to the next page.
 
@@ -48,9 +48,9 @@ sd_next()
 
 :::
 
-::: {.sd_page id=basic_navigation}
+::: {.sd_page id=basic_skipping}
 
-## 1. Simple navigation
+## 1. Simple skipping
  
 If the "**No**" option is chosen, you will be sent to the screenout page.
 
@@ -72,9 +72,9 @@ sd_next()
 
 :::
 
-::: {.sd_page id=complex_navigation}
+::: {.sd_page id=complex_skipping}
 
-## 2. Complex navigation
+## 2. Complex skipping
  
 Say that we want to have a more complicated condition for screening out respondents. Now there are 2 questions. If the user chooses "**No**" for both questions, they'll be sent to the screenout page. This is also done by using the `sd_skip_if()` function in the `server` of `app.R`.
 

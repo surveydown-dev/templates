@@ -35,22 +35,21 @@ ui <- sd_ui()
 # Server setup ----------------------------------------------------------------
 
 server <- function(input, output, session) {
-  # Define any conditional display logic here (show a question if a condition is true)
-  sd_show_if(
-    # Simple conditional display
-    input$penguins_simple == "other" ~ "penguins_simple_other",
+  # The conditional stopping logic stops the navigation if a condition is true,
+  # and displays a message.
+  sd_stop_if(
+    # Here we have 3 conditions to check. The first 2 are on page1, and the last
+    # is on page2. There is no need to specify which page the conditions are at.
+    # If the conditions are on the same page, the messages will be shown together.
 
-    # Complex conditional display
-    input$penguins_complex == "other" &
-      input$show_other == "show" ~
-      "penguins_complex_other",
+    # The zip question only accepts a 5-digit response
+    nchar(input$zip) != 5 ~ "Zip code must be 5 digits.",
 
-    # Conditional display based on a numeric value
-    as.numeric(input$car_number) > 1 ~ "ev_ownership",
+    # The year of birth question only accepts a year after 1900
+    as.numeric(input$yob) <= 1900 ~ "Year of birth must be after 1900.",
 
-    # Conditional display based on multiple inputs
-    input$fav_fruits %in% c("apple", "banana") ~ "apple_or_banana",
-    length(input$fav_fruits) > 3 ~ "fruit_number"
+    # The phone number question only accepts a 10-digit response
+    nchar(input$phone) != 10 ~ "Phone number must be 10 digits."
   )
 
   # Run surveydown server and define database

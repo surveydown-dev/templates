@@ -11,7 +11,7 @@ footer-left: "Made with [surveydown](https://surveydown.org)"
 footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/templates)'
 
 # Survey Settings
-use-cookies: false
+use-cookies: true
 auto-scroll: false
 rate-survey: false
 system-language: en

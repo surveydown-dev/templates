@@ -22,8 +22,14 @@ design <- cbc_design(
     profiles = profiles,
     n_resp   = 2000, # Number of respondents
     n_alts   = 3,    # Number of alternatives per question
-    n_q      = 8     # Number of questions per respondent
+    n_q      = 6     # Number of questions per respondent
 )
+
+head(design) # preview
+
+# Convert dummy-coded design back to standard coding
+
+design <- cbc_decode(design)
 
 head(design) # preview
 
@@ -36,6 +42,7 @@ image_names <- data.frame(
 )
 design <- design %>%
     left_join(image_names, by = "type")
+
 head(design) # preview
 
 # Save design

@@ -59,18 +59,18 @@ server <- function(input, output, session) {
   sd_store_value(respondentID, "respID")
 
   # Filter for the rows for the chosen respondentID
-  df <- design %>%
-    filter(respID == respondentID) %>%
+  df <- design |>
+    filter(respID == respondentID) |>
     # Paste on the "images/" path (images are stored in the "images" folder)
     mutate(image = paste0("images/", image))
 
   # Function to create the options table for a given choice question
   make_cbc_table <- function(df) {
-    alts <- df %>%
+    alts <- df |>
       mutate(
         price = paste(scales::dollar(price), "/ lb"),
         image = paste0('<img src="', image, '" width=100>')
-      ) %>%
+      ) |>
       # Make nicer attribute labels
       select(
         `Option:` = altID,
@@ -81,7 +81,7 @@ server <- function(input, output, session) {
       )
     row.names(alts) <- NULL # Drop row names
 
-    table <- kbl(t(alts), escape = FALSE) %>%
+    table <- kbl(t(alts), escape = FALSE) |>
       kable_styling(
         bootstrap_options = c("striped", "hover", "condensed"),
         full_width = FALSE,
@@ -100,14 +100,14 @@ server <- function(input, output, session) {
   output$cbc5_table <- make_cbc_table(df |> filter(qID == 5))
   output$cbc6_table <- make_cbc_table(df |> filter(qID == 6))
 
-  # Define any conditional skip logic here (skip to page if a condition is true)
-  sd_skip_forward(
+  # Define conditional skip logic (skip to page if a condition is true)
+  sd_skip_if(
     input$screenout == "blue" ~ "end_screenout",
     input$consent_age == "no" ~ "end_consent",
     input$consent_understand == "no" ~ "end_consent"
   )
 
-  # Define any conditional display logic here (show a question if a condition is true)
+  # Define conditional display logic (show a question if a condition is true)
   sd_show_if(
     input$like_fruit %in% c("yes", "kind_of") ~ "fav_fruit"
   )

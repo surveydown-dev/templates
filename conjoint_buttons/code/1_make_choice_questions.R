@@ -27,6 +27,12 @@ design <- cbc_design(
 
 head(design) # preview
 
+# Convert dummy-coded design back to standard coding
+
+design <- cbc_decode(design)
+
+head(design) # preview
+
 # Add image names matched to the apple type
 # (we'll use these to display images in the survey)
 image_names <- data.frame(
@@ -36,6 +42,7 @@ image_names <- data.frame(
 )
 design <- design %>%
     left_join(image_names, by = "type")
+
 head(design) # preview
 
 # Save design

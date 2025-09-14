@@ -84,7 +84,7 @@ The phone number question only allows **10 digits**.
 
 ```{r}
 sd_question(
-  type  = "numeric",
+  type  = "text",
   id    = "phone",
   label = "What's your phone number?"
 )
